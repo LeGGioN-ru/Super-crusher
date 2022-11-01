@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 709aa0c7dc8db9a4c9231acf277d6fa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _powerThreashold: 0
+  _money: 20
   _health: 500
   _constituentParts:
   - {fileID: 2485444295129252300}
@@ -865,7 +865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 709aa0c7dc8db9a4c9231acf277d6fa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _powerThreashold: 0
+  _money: 20
   _health: 500
   _constituentParts:
   - {fileID: 2485444295992770496}

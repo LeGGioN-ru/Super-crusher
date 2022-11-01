@@ -2,18 +2,33 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+    private Part[] _parts;
     private Rigidbody[] _rigidbodies;
     private Press _press;
+    private GameRestarter _restarter;
 
-    private void Start()
+    private void Awake()
     {
         _rigidbodies = GetComponentsInChildren<Rigidbody>();
+        _parts = GetComponentsInChildren<Part>();
     }
 
-    public void Init(Press press)
+    public void Init(Press press, GameRestarter gameRestarter)
     {
         _press = press;
+        _restarter = gameRestarter;
         press.EnergyEnded += OnEnergyEnded;
+
+        foreach (var part in _parts)
+            part.Destroyed += OnDestroyed;
+    }
+
+    private void OnDisable()
+    {
+        _press.EnergyEnded -= OnEnergyEnded;
+
+        foreach (var part in _parts)
+            part.Destroyed -= OnDestroyed;
     }
 
     private void OnEnergyEnded()
@@ -28,5 +43,12 @@ public class Item : MonoBehaviour
         }
 
         _press.EnergyEnded -= OnEnergyEnded;
+    }
+
+    private void OnDestroyed(Part part)
+    {
+        if (part.Equals(_parts[_parts.Length - 1]))
+            StartCoroutine(_restarter.Execute());
+
     }
 }

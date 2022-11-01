@@ -8,6 +8,7 @@ public class Press : MonoBehaviour
     [SerializeField] private float _hitDelay;
     [SerializeField] private int _energy;
     [SerializeField] private float _percentEnergyReducing;
+    [SerializeField] private Wallet _wallet;
 
     private Part _currentPart;
     private float _passedTime;
@@ -16,6 +17,7 @@ public class Press : MonoBehaviour
 
     public event Action<Part> PartDetected;
     public event Action EnergyEnded;
+    public event Action<Part> PartHitted;
 
     private void OnValidate()
     {
@@ -49,19 +51,27 @@ public class Press : MonoBehaviour
         if (_passedTime < _hitDelay)
             return;
 
-        if (_currentPart != null && _mover.IsMove)
-        {
-            _currentPart.TakeDamage(_power);
-            _passedTime = 0;
-            _currentEnergy -= _energyReduced;
-        }
+        if (_currentPart != null)
+            if (_currentPart.IsHittable && _mover.IsMove)
+                HitPart();
 
         if (_currentEnergy <= 0)
-        {
-            EnergyEnded?.Invoke();
-            ResetEnergy();
-            enabled = false;
-        }
+            DisableEnergy();
+    }
+
+    private void HitPart()
+    {
+        _currentPart.TakeDamage(_power);
+        _passedTime = 0;
+        _wallet.AddMoney(_currentPart.Money);
+        _currentEnergy -= _energyReduced;
+    }
+
+    private void DisableEnergy()
+    {
+        EnergyEnded?.Invoke();
+        ResetEnergy();
+        enabled = false;
     }
 
     private void ResetEnergy()

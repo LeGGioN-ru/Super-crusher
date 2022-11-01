@@ -27,7 +27,7 @@ public class GameRestarter : MonoBehaviour
         StartCoroutine(Execute());
     }
 
-    private IEnumerator Execute()
+    public IEnumerator Execute()
     {
         float passedTime = 0;
 
