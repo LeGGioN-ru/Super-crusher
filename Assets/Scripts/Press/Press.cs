@@ -6,30 +6,19 @@ public class Press : MonoBehaviour
     [SerializeField] private int _power;
     [SerializeField] private PressMoverForward _mover;
     [SerializeField] private float _hitDelay;
-    [SerializeField] private int _energy;
-    [SerializeField] private float _percentEnergyReducing;
     [SerializeField] private Wallet _wallet;
 
     private Part _currentPart;
     private float _passedTime;
-    private float _currentEnergy;
-    private float _energyReduced;
+
+    public int Power => _power;
 
     public event Action<Part> PartDetected;
-    public event Action EnergyEnded;
-    public event Action<Part> PartHitted;
+    public event Action PartHitted;
 
-    private void OnValidate()
+    private void OnEnable()
     {
-        int maxEnergyReducingPercent = 1;
-
-        if (_percentEnergyReducing >= maxEnergyReducingPercent)
-            throw new ArgumentOutOfRangeException(nameof(_percentEnergyReducing));
-    }
-
-    private void Start()
-    {
-        ResetEnergy();
+        _currentPart = null;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -52,31 +41,24 @@ public class Press : MonoBehaviour
             return;
 
         if (_currentPart != null)
+        {
             if (_currentPart.IsHittable && _mover.IsMove)
+            {
+                _passedTime = 0;
                 HitPart();
+            }
+        }
+    }
 
-        if (_currentEnergy <= 0)
-            DisableEnergy();
+    public void UpgradePower(int powerUp)
+    {
+        _power += powerUp;
     }
 
     private void HitPart()
     {
         _currentPart.TakeDamage(_power);
-        _passedTime = 0;
-        _wallet.AddMoney(_currentPart.Money);
-        _currentEnergy -= _energyReduced;
-    }
-
-    private void DisableEnergy()
-    {
-        EnergyEnded?.Invoke();
-        ResetEnergy();
-        enabled = false;
-    }
-
-    private void ResetEnergy()
-    {
-        _energyReduced = _power * _percentEnergyReducing;
-        _currentEnergy = _energy;
+        _wallet.AddMoney(_currentPart.Money * _power);
+        PartHitted?.Invoke();
     }
 }

@@ -6,28 +6,31 @@ public class GameRestarter : MonoBehaviour
     [SerializeField] private Press _press;
     [SerializeField] private PressMoverForward _pressMoverForward;
     [SerializeField] private PressMoverBack _pressMoverBack;
+    [SerializeField] private PressEnergy _pressEnergy;
     [SerializeField] private Animator _cleanerAnimator;
     [SerializeField] private ItemSpawner _spawner;
     [SerializeField] private float _restartDelay;
 
     private void OnEnable()
     {
-        _press.EnergyEnded += OnEnergyEnded;
         _pressMoverBack.Backed += OnBacked;
     }
 
     private void OnDisable()
     {
-        _press.EnergyEnded -= OnEnergyEnded;
         _pressMoverBack.Backed -= OnBacked;
     }
 
-    private void OnEnergyEnded()
+    public void Execute()
     {
-        StartCoroutine(Execute());
+        _press.enabled = false;
+        _pressMoverForward.enabled = false;
+        _pressEnergy.enabled = false;
+
+        StartCoroutine(Restrating());
     }
 
-    public IEnumerator Execute()
+    private IEnumerator Restrating()
     {
         float passedTime = 0;
 
@@ -49,6 +52,7 @@ public class GameRestarter : MonoBehaviour
     {
         _press.enabled = true;
         _pressMoverForward.enabled = true;
+        _pressEnergy.enabled = true;
         _spawner.Execute();
     }
 }

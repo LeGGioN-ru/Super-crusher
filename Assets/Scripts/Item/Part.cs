@@ -5,26 +5,31 @@ using UnityEngine;
 
 public class Part : MonoBehaviour
 {
-    [SerializeField] private int _money;
-    [SerializeField] private int _health;
     [SerializeField] private List<ConstituentPart> _constituentParts;
+
+    private PartStats _stats;
 
     public event Action<Part> Destroyed;
 
-    public bool IsHittable => _health >= 0;
-    public int Money => _money;
+    public bool IsHittable => _stats.Durability > 0;
+    public int Money => _stats.Money;
+
+    public void SetStats(PartStats partStats)
+    {
+        _stats = new PartStats(partStats);
+    }
 
     public void TakeDamage(int damage)
     {
-        if (_health <= 0)
+        _stats.ReduceDurability(damage);
+        _constituentParts.ForEach(part => part.Move());
+
+        if (IsHittable == false)
         {
             Destroyed?.Invoke(this);
             DemolishRigid();
             return;
         }
-
-        _health -= damage;
-        _constituentParts.ForEach(part => part.Move());
     }
 
     private void DemolishRigid()

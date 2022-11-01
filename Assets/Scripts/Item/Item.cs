@@ -1,11 +1,14 @@
+using System;
 using UnityEngine;
 
 public class Item : MonoBehaviour
 {
     private Part[] _parts;
     private Rigidbody[] _rigidbodies;
-    private Press _press;
+    private PressEnergy _pressEnergy;
     private GameRestarter _restarter;
+
+    public event Action Destroyed;
 
     private void Awake()
     {
@@ -13,19 +16,22 @@ public class Item : MonoBehaviour
         _parts = GetComponentsInChildren<Part>();
     }
 
-    public void Init(Press press, GameRestarter gameRestarter)
+    public void Init(PressEnergy pressEnergy, GameRestarter gameRestarter, PartStats partStats)
     {
-        _press = press;
+        _pressEnergy = pressEnergy;
         _restarter = gameRestarter;
-        press.EnergyEnded += OnEnergyEnded;
+        pressEnergy.EnergyEnded += OnEnergyEnded;
 
         foreach (var part in _parts)
+        {
             part.Destroyed += OnDestroyed;
+            part.SetStats(partStats);
+        }
     }
 
     private void OnDisable()
     {
-        _press.EnergyEnded -= OnEnergyEnded;
+        _pressEnergy.EnergyEnded -= OnEnergyEnded;
 
         foreach (var part in _parts)
             part.Destroyed -= OnDestroyed;
@@ -41,14 +47,14 @@ public class Item : MonoBehaviour
             if (rigidbody != null)
                 rigidbody.constraints = RigidbodyConstraints.None;
         }
-
-        _press.EnergyEnded -= OnEnergyEnded;
     }
 
     private void OnDestroyed(Part part)
     {
         if (part.Equals(_parts[_parts.Length - 1]))
-            StartCoroutine(_restarter.Execute());
-
+        {
+            Destroyed?.Invoke();
+            _restarter.Execute();
+        }
     }
 }

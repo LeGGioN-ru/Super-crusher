@@ -4,6 +4,7 @@ using UnityEngine;
 public class CameraMover : MonoBehaviour
 {
     [SerializeField] private Press _press;
+    [SerializeField] private PressEnergy _pressEnergy;
     [SerializeField] private Transform[] _cameraPositions;
     [SerializeField] private float _moveDuration;
 
@@ -19,12 +20,13 @@ public class CameraMover : MonoBehaviour
     private void OnEnable()
     {
         _press.PartDetected += OnPartDetected;
-        _press.EnergyEnded += OnEnergyEnded;
+        _pressEnergy.EnergyEnded += OnEnergyEnded;
     }
 
     private void OnDisable()
     {
         _press.PartDetected -= OnPartDetected;
+        _pressEnergy.EnergyEnded -= OnEnergyEnded;
     }
 
     private void OnPartDetected(Part part)

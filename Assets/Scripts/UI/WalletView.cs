@@ -8,12 +8,12 @@ public class WalletView : MonoBehaviour
 
     private void OnEnable()
     {
-        _wallet.MoneyAdded += OnMoneyAdded;
+        _wallet.MoneyChanged += OnMoneyAdded;
     }
 
     private void OnDisable()
     {
-        _wallet.MoneyAdded -= OnMoneyAdded;
+        _wallet.MoneyChanged -= OnMoneyAdded;
     }
 
     private void OnMoneyAdded(int money)

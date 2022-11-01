@@ -32,7 +32,8 @@ public class PressMoverForward : MonoBehaviour
         _playerInput.Enable();
 
         _press.PartDetected += OnPartDetected;
-        _press.EnergyEnded += OnEnergyEnded;
+
+        _currentSpeed = _defaultSpeed;
     }
 
     private void OnDisable()
@@ -68,11 +69,5 @@ public class PressMoverForward : MonoBehaviour
     {
         _currentSpeed = _defaultSpeed;
         part.Destroyed -= OnPartDestroyed;
-    }
-
-    private void OnEnergyEnded()
-    {
-        _currentSpeed = _defaultSpeed;
-        enabled = false;
     }
 }
