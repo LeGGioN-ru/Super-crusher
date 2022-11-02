@@ -8,6 +8,7 @@ public abstract class UpgradeView : MonoBehaviour
 {
     [SerializeField] private TMP_Text _price;
     [SerializeField] private TMP_Text _level;
+    [SerializeField] private GameRestarter _restarter;
 
     private Button _button;
     private Upgrader _upgrader;
@@ -23,16 +24,20 @@ public abstract class UpgradeView : MonoBehaviour
 
     private void OnEnable()
     {
-        _upgrader.Upgraded += OnUpgraded;
-        _upgrader.Wallet.MoneyChanged += OnMoneyChanged;
+        _upgrader.Changed += OnUpgraded;
+        _upgrader.Wallet.MoneyAdded += OnMoneyChanged;
+        _upgrader.Wallet.MoneyReduced += OnMoneyChanged;
+        _restarter.Restarted += CheckAvalible;
         _button.onClick.AddListener(_upgrader.Execute);
         _button.onClick.AddListener(CheckAvalible);
     }
 
     private void OnDisable()
     {
-        _upgrader.Upgraded -= OnUpgraded;
-        _upgrader.Wallet.MoneyChanged -= OnMoneyChanged;
+        _upgrader.Changed -= OnUpgraded;
+        _upgrader.Wallet.MoneyAdded -= OnMoneyChanged;
+        _upgrader.Wallet.MoneyReduced -= OnMoneyChanged;
+        _restarter.Restarted -= CheckAvalible;
         _button.onClick.RemoveListener(_upgrader.Execute);
         _button.onClick.RemoveListener(CheckAvalible);
     }

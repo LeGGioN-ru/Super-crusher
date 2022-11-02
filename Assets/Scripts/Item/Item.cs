@@ -20,7 +20,7 @@ public class Item : MonoBehaviour
     {
         _pressEnergy = pressEnergy;
         _restarter = gameRestarter;
-        pressEnergy.EnergyEnded += OnEnergyEnded;
+        _pressEnergy.EnergyEnded += OnEnergyEnded;
 
         foreach (var part in _parts)
         {
@@ -34,7 +34,9 @@ public class Item : MonoBehaviour
         _pressEnergy.EnergyEnded -= OnEnergyEnded;
 
         foreach (var part in _parts)
+        {
             part.Destroyed -= OnDestroyed;
+        }
     }
 
     private void OnEnergyEnded()

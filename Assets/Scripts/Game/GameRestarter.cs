@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ public class GameRestarter : MonoBehaviour
     [SerializeField] private Animator _cleanerAnimator;
     [SerializeField] private ItemSpawner _spawner;
     [SerializeField] private float _restartDelay;
+
+    public event Action Restarted;
 
     private void OnEnable()
     {
@@ -54,5 +57,6 @@ public class GameRestarter : MonoBehaviour
         _pressMoverForward.enabled = true;
         _pressEnergy.enabled = true;
         _spawner.Execute();
+        Restarted?.Invoke();
     }
 }

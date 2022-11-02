@@ -3,18 +3,17 @@ using UnityEngine;
 
 public class Wallet : MonoBehaviour
 {
-    [SerializeField] private float _moneyAddPercent;
-
     private int _currentMoney;
 
     public int CurrentMoney => _currentMoney;
 
-    public event Action<int> MoneyChanged;
+    public event Action<int> MoneyAdded;
+    public event Action<int> MoneyReduced;
 
     public void AddMoney(int money)
     {
-        _currentMoney += Convert.ToInt32(money * _moneyAddPercent);
-        MoneyChanged?.Invoke(_currentMoney);
+        _currentMoney += money;
+        MoneyAdded?.Invoke(money);
     }
 
     public void ReduceMoney(int money)
@@ -23,6 +22,6 @@ public class Wallet : MonoBehaviour
             throw new InvalidOperationException(nameof(ReduceMoney));
 
         _currentMoney -= money;
-        MoneyChanged?.Invoke(_currentMoney);
+        MoneyReduced?.Invoke(money);
     }
 }

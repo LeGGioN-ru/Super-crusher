@@ -19,7 +19,7 @@ public class Part : MonoBehaviour
         _stats = new PartStats(partStats);
     }
 
-    public void TakeDamage(int damage)
+    public float TakeDamage(int damage)
     {
         _stats.ReduceDurability(damage);
         _constituentParts.ForEach(part => part.Move());
@@ -28,8 +28,9 @@ public class Part : MonoBehaviour
         {
             Destroyed?.Invoke(this);
             DemolishRigid();
-            return;
         }
+
+        return Math.Clamp(Convert.ToSingle(damage) / _stats.MaxDurability, 0, 1);
     }
 
     private void DemolishRigid()

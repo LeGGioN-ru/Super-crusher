@@ -6,10 +6,9 @@ public abstract class Upgrader : MonoBehaviour
     [SerializeField] private Wallet _wallet;
     [SerializeField] private int _price;
     [SerializeField] private float _priceIncrease;
-
     private int _level;
 
-    public event Action<int, int> Upgraded;
+    public event Action<int, int> Changed;
 
     public Wallet Wallet => _wallet;
     public int Level => _level;
@@ -24,7 +23,7 @@ public abstract class Upgrader : MonoBehaviour
         UpgradeTarget();
         _price = Convert.ToInt32(_price * _priceIncrease);
         _level++;
-        Upgraded?.Invoke(_level, _price);
+        Changed?.Invoke(_level, _price);
     }
 
     abstract protected void UpgradeTarget();
