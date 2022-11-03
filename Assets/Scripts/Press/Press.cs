@@ -25,7 +25,7 @@ public class Press : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out Part part))
         {
-            if (part.Equals(_currentPart) == false)
+            if (_currentPart == null)
             {
                 _currentPart = part;
                 PartDetected?.Invoke(part);
@@ -57,6 +57,9 @@ public class Press : MonoBehaviour
 
     private void HitPart()
     {
+        if (_currentPart == null)
+            return;
+
         float percentItemDamage = _currentPart.TakeDamage(_power);
         _wallet.AddMoney(Convert.ToInt32(_currentPart.Money * percentItemDamage));
         PartHitted?.Invoke();
