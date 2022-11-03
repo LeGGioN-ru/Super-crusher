@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -48,7 +49,7 @@ public class MoneyAddTextPool : MonoBehaviour
         }
     }
 
-    private void OnMoneyAdded(int money)
+    private void OnMoneyAdded(long money)
     {
         if (TryGetMoneyAddText(out MoneyAddText moneyAddText))
         {
@@ -60,7 +61,8 @@ public class MoneyAddTextPool : MonoBehaviour
 
     private bool TryGetMoneyAddText(out MoneyAddText moneyAddText)
     {
-        moneyAddText = _moneyAddTexts.FirstOrDefault(text => text.gameObject.activeSelf == false);
+        List<MoneyAddText> notActiveAddTexts = _moneyAddTexts.Where(text => text.gameObject.activeSelf == false).ToList();
+        moneyAddText = notActiveAddTexts[Random.Range(0, notActiveAddTexts.Count())];
         return moneyAddText != null;
     }
 }

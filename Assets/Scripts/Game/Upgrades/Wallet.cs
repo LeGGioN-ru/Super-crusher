@@ -3,20 +3,20 @@ using UnityEngine;
 
 public class Wallet : MonoBehaviour
 {
-    private int _currentMoney;
+    private long _currentMoney;
 
-    public int CurrentMoney => _currentMoney;
+    public long CurrentMoney => _currentMoney;
 
-    public event Action<int> MoneyAdded;
-    public event Action<int> MoneyReduced;
+    public event Action<long> MoneyAdded;
+    public event Action<long> MoneyReduced;
 
-    public void AddMoney(int money)
+    public void AddMoney(long money)
     {
         _currentMoney += money;
         MoneyAdded?.Invoke(money);
     }
 
-    public void ReduceMoney(int money)
+    public void ReduceMoney(long money)
     {
         if (_currentMoney < money)
             throw new InvalidOperationException(nameof(ReduceMoney));

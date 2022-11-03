@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
 {
-    [SerializeField] private Item _item;
+    [SerializeField] private ItemUp _itemUp;
+    [SerializeField] private Item[] _items;
+    [SerializeField] private int _levelItemUp;
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private PressEnergy _pressEnergy;
     [SerializeField] private GameRestarter _restarter;
@@ -27,13 +29,24 @@ public class ItemSpawner : MonoBehaviour
 
     public void Execute()
     {
-        _currentItem = Instantiate(_item, _spawnPoint);
+        _currentItem = Instantiate(GetItem(), _spawnPoint);
         _currentItem.Init(_pressEnergy, _restarter, _partStats);
 
         if (_isCurrentItemBeDestroyed)
             return;
 
         _currentItem.Destroyed += OnDestroyed;
+    }
+
+    private Item GetItem()
+    {
+        if (_items.Length == 0)
+            throw new InvalidOperationException(nameof(GetItem));
+
+        if (_itemUp.Level == 0)
+            return _items[0];
+
+        return _items[Convert.ToInt32(_itemUp.Level / _levelItemUp)];
     }
 
     private void OnDestroyed()

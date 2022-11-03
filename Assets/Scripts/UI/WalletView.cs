@@ -18,8 +18,8 @@ public class WalletView : MonoBehaviour
         _wallet.MoneyReduced -= OnMoneyChanged;
     }
 
-    private void OnMoneyChanged(int money)
+    private void OnMoneyChanged(long money)
     {
-        _text.text = _wallet.CurrentMoney.ToString();
+        _text.text = NumberCuter.Execute(_wallet.CurrentMoney);
     }
 }

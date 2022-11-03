@@ -42,13 +42,13 @@ public abstract class UpgradeView : MonoBehaviour
         _button.onClick.RemoveListener(CheckAvalible);
     }
 
-    private void OnUpgraded(int level, int price)
+    private void OnUpgraded(int level, long price)
     {
-        _price.text = price.ToString();
+        _price.text = NumberCuter.Execute(price);
         _level.text = $"LV {level}";
     }
 
-    private void OnMoneyChanged(int money)
+    private void OnMoneyChanged(long money)
     {
         CheckAvalible();
     }
