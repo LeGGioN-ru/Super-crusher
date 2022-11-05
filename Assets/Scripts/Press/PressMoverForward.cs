@@ -13,6 +13,8 @@ public class PressMoverForward : MonoBehaviour
     private bool _isMove;
     private Vector3 _downDirection = new Vector3(0, 0, -1);
 
+    public event Action Moved;
+
     public bool IsMove => _isMove;
 
     private void Awake()
@@ -51,6 +53,7 @@ public class PressMoverForward : MonoBehaviour
 
     private void OnPressMoved()
     {
+        Moved?.Invoke();
         _isMove = true;
     }
 

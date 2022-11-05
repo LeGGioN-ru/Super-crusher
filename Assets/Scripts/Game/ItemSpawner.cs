@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
 {
     [SerializeField] private ItemUp _itemUp;
-    [SerializeField] private Item[] _items;
+    [SerializeField] private List<Item> _items;
     [SerializeField] private int _levelItemUp;
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private PressEnergy _pressEnergy;
@@ -40,13 +42,20 @@ public class ItemSpawner : MonoBehaviour
 
     private Item GetItem()
     {
-        if (_items.Length == 0)
+        if (_items.Count == 0)
             throw new InvalidOperationException(nameof(GetItem));
 
-        if (_itemUp.Level == 0)
-            return _items[0];
+        int itemNumber = Convert.ToInt32(_itemUp.Level / _levelItemUp);
 
-        return _items[Convert.ToInt32(_itemUp.Level / _levelItemUp)];
+        if (itemNumber >= _items.Count)
+            AddSimularItems();
+
+        return _items[itemNumber];
+    }
+
+    private void AddSimularItems()
+    {
+        _items.AddRange(_items);
     }
 
     private void OnDestroyed()

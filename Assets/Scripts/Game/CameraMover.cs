@@ -6,35 +6,30 @@ public class CameraMover : MonoBehaviour
 {
     [SerializeField] private Press _press;
     [SerializeField] private PressEnergy _pressEnergy;
+    [SerializeField] private PressMoverForward _moverForward;
     [SerializeField] private Transform[] _cameraPositions;
     [SerializeField] private GameRestarter _restarter;
     [SerializeField] private float _moveDuration;
 
-    private PlayerInput _playerInput;
     private Camera _camera;
     private int _currentCameraPositionIndex;
 
     private void Awake()
     {
-        _playerInput = new PlayerInput();
-        _playerInput.Player.PressMove.performed += ctx => OnPressMove();
-
         _camera = Camera.main;
         _camera.transform.position = _cameraPositions[_currentCameraPositionIndex].position;
     }
 
     private void OnEnable()
     {
-        _playerInput.Enable();
-
+        _moverForward.Moved += OnPressMoved;
         _press.PartDetected += OnPartDetected;
         _restarter.Restarted += OnRestarted;
     }
 
     private void OnDisable()
     {
-        _playerInput.Disable();
-
+        _moverForward.Moved -= OnPressMoved;
         _press.PartDetected -= OnPartDetected;
         _restarter.Restarted -= OnRestarted;
     }
@@ -66,7 +61,7 @@ public class CameraMover : MonoBehaviour
         _camera.transform.DOMove(_cameraPositions[_currentCameraPositionIndex].position, _moveDuration);
     }
 
-    private void OnPressMove()
+    private void OnPressMoved()
     {
         if (_currentCameraPositionIndex > 0)
             return;

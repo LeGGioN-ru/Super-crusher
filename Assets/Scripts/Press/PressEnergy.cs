@@ -31,23 +31,24 @@ public class PressEnergy : MonoBehaviour
         _press.PartHitted -= OnPartHitted;
     }
 
-    private void OnPartHitted()
-    {
-        _currentEnergy -= _energyReduced;
-
-        if (_currentEnergy <= 0)
-            DisableEnergy();
-    }
-
     public void UpgradeEnergy(int powerUp)
     {
         _energy += powerUp;
+        ResetEnergy();
     }
 
     private void ResetEnergy()
     {
         _energyReduced = _press.Power * _percentEnergyReducing;
         _currentEnergy = _energy;
+    }
+
+    private void OnPartHitted()
+    {
+        _currentEnergy -= _energyReduced;
+
+        if (_currentEnergy <= 0)
+            DisableEnergy();
     }
 
     private void DisableEnergy()

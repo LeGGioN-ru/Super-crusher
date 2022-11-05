@@ -22,10 +22,12 @@ public class Item : MonoBehaviour
         _restarter = gameRestarter;
         _pressEnergy.EnergyEnded += OnEnergyEnded;
 
+        PartStats definedPartStats = new PartStats(partStats.Money, partStats.Durability / _parts.Length);
+
         foreach (var part in _parts)
         {
             part.Destroyed += OnDestroyed;
-            part.SetStats(partStats);
+            part.SetStats(definedPartStats);
         }
     }
 

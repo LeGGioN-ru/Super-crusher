@@ -1,14 +1,15 @@
+using TMPro;
 using UnityEngine;
 
 public class MoneyAddText : MonoBehaviour
 {
-    [SerializeField] private TextMesh _text;
+    [SerializeField] private TMP_Text _text;
     [SerializeField] private Animator _animator;
 
     public Animator Animator => _animator;
 
-    public void SetText(string text)
+    public void SetText(long money)
     {
-        _text.text = text;
+        _text.text = NumberCuter.Execute(money);
     }
 }

@@ -53,7 +53,7 @@ public class MoneyAddTextPool : MonoBehaviour
     {
         if (TryGetMoneyAddText(out MoneyAddText moneyAddText))
         {
-            moneyAddText.SetText(money.ToString());
+            moneyAddText.SetText(money);
             moneyAddText.gameObject.SetActive(true);
             moneyAddText.Animator.Play(FloatingTextAnimatorController.State.Incarnate);
         }
