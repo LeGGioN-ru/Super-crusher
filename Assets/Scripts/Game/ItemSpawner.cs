@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
@@ -16,6 +15,9 @@ public class ItemSpawner : MonoBehaviour
     private Item _currentItem;
     private bool _isCurrentItemBeDestroyed;
 
+    public event Action<Item> Spawned;
+
+    public Item CurrentItem => _currentItem;
     public bool IsCurrentItemBeDestroyed => _isCurrentItemBeDestroyed;
 
     private void Start()
@@ -33,6 +35,8 @@ public class ItemSpawner : MonoBehaviour
     {
         _currentItem = Instantiate(GetItem(), _spawnPoint);
         _currentItem.Init(_pressEnergy, _restarter, _partStats);
+
+        Spawned?.Invoke(_currentItem);
 
         if (_isCurrentItemBeDestroyed)
             return;
@@ -58,7 +62,7 @@ public class ItemSpawner : MonoBehaviour
         _items.AddRange(_items);
     }
 
-    private void OnDestroyed()
+    private void OnDestroyed(Item item)
     {
         _isCurrentItemBeDestroyed = true;
         _currentItem.Destroyed -= OnDestroyed;

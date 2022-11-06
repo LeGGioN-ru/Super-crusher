@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Item : MonoBehaviour
@@ -8,7 +9,9 @@ public class Item : MonoBehaviour
     private PressEnergy _pressEnergy;
     private GameRestarter _restarter;
 
-    public event Action Destroyed;
+    private float _destroyDelay = 10;
+
+    public event Action<Item> Destroyed;
 
     private void Awake()
     {
@@ -51,14 +54,24 @@ public class Item : MonoBehaviour
             if (rigidbody != null)
                 rigidbody.constraints = RigidbodyConstraints.None;
         }
+
+        StartCoroutine(Destroying());
     }
 
     private void OnDestroyed(Part part)
     {
         if (part.Equals(_parts[_parts.Length - 1]))
         {
-            Destroyed?.Invoke();
+            Destroyed?.Invoke(this);
             _restarter.Execute();
+            StartCoroutine(Destroying());
         }
+    }
+
+    private IEnumerator Destroying()
+    {
+        yield return new WaitForSeconds(_destroyDelay);
+
+        Destroy(gameObject);
     }
 }

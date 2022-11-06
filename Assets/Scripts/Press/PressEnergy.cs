@@ -12,7 +12,10 @@ public class PressEnergy : MonoBehaviour
     private float _currentEnergy;
     private float _energyReduced;
 
-    public Action EnergyEnded;
+    public int Energy => _energy;
+
+    public event Action<float> Changed;
+    public event Action EnergyEnded;
 
     private void Awake()
     {
@@ -41,6 +44,8 @@ public class PressEnergy : MonoBehaviour
     {
         _energyReduced = _press.Power * _percentEnergyReducing;
         _currentEnergy = _energy;
+
+        Changed?.Invoke(_currentEnergy);
     }
 
     private void OnPartHitted()
@@ -49,12 +54,13 @@ public class PressEnergy : MonoBehaviour
 
         if (_currentEnergy <= 0)
             DisableEnergy();
+
+        Changed?.Invoke(_currentEnergy);
     }
 
     private void DisableEnergy()
     {
         EnergyEnded?.Invoke();
-        ResetEnergy();
         _restarter.Execute();
     }
 }

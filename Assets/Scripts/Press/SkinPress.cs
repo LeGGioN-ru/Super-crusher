@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+
 [Serializable]
 public class SkinPress
 {
@@ -28,7 +29,6 @@ public class SkinPress
 
     public void SetModel()
     {
-        if (_pressModel.mesh.Equals(_model) == false)
-            _pressModel.mesh = _model;
+        _pressModel.mesh = _model;
     }
 }

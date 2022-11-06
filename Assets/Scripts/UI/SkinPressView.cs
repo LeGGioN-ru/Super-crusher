@@ -22,7 +22,10 @@ public class SkinPressView : MonoBehaviour
         _skinPress = skinPress;
 
         UpdateUI();
+    }
 
+    private void OnEnable()
+    {
         _button.onClick.AddListener(OnButtonClick);
     }
 
@@ -43,20 +46,20 @@ public class SkinPressView : MonoBehaviour
 
     private void UpdateUI()
     {
+        if (_buttonText.text == _equipButtonLabel)
+            return;
+
         if (_skinPress.IsAvalible)
         {
             _progress.value = 1;
             _textProgress.enabled = false;
+            _buttonText.text = _equipButtonLabel;
         }
         else
         {
             _progress.value = _skinPress.AdvertisingWatched / Convert.ToSingle(_skinPress.NeedWatchAdvertising);
             _textProgress.text = $"{_skinPress.AdvertisingWatched}/{_skinPress.NeedWatchAdvertising}";
-        }
-
-        if (_skinPress.IsAvalible)
-            _buttonText.text = _equipButtonLabel;
-        else
             _buttonText.text = _showAdvertisingButtonLabel;
+        }
     }
 }
