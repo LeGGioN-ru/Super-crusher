@@ -37,17 +37,19 @@ public class Press : MonoBehaviour
     {
         _passedTime += Time.deltaTime;
 
+        if (_currentPart == null)
+            return;
+
+        if (_currentPart.IsHittable == false || _mover.IsMove == false)
+            return;
+
+        _currentPart.MoveConstitientsParts();
+
         if (_passedTime < _hitDelay)
             return;
 
-        if (_currentPart != null)
-        {
-            if (_currentPart.IsHittable && _mover.IsMove)
-            {
-                _passedTime = 0;
-                HitPart();
-            }
-        }
+        _passedTime = 0;
+        HitPart();
     }
 
     public void UpgradePower(int powerUp)

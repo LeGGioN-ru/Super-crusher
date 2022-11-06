@@ -22,7 +22,7 @@ public class Part : MonoBehaviour
     public float TakeDamage(int damage)
     {
         _stats.ReduceDurability(damage);
-        _constituentParts.ForEach(part => part.Move());
+        
 
         if (IsHittable == false)
         {
@@ -31,6 +31,11 @@ public class Part : MonoBehaviour
         }
 
         return Math.Clamp(Convert.ToSingle(damage) / _stats.MaxDurability, 0, 1);
+    }
+
+    public void MoveConstitientsParts()
+    {
+        _constituentParts.ForEach(part => part.Move());
     }
 
     private void DemolishRigid()

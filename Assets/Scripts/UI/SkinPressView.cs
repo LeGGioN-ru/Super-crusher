@@ -1,3 +1,4 @@
+using Lean.Localization;
 using System;
 using TMPro;
 using UnityEngine;
@@ -12,7 +13,7 @@ public class SkinPressView : MonoBehaviour
     [SerializeField] private TMP_Text _textProgress;
     [SerializeField] private string _equipButtonLabel;
     [SerializeField] private string _showAdvertisingButtonLabel;
-
+    [SerializeField] private LeanLocalizedTextMeshProUGUI _textTranslate;
 
     private SkinPress _skinPress;
 
@@ -46,20 +47,17 @@ public class SkinPressView : MonoBehaviour
 
     private void UpdateUI()
     {
-        if (_buttonText.text == _equipButtonLabel)
-            return;
-
         if (_skinPress.IsAvalible)
         {
             _progress.value = 1;
             _textProgress.enabled = false;
-            _buttonText.text = _equipButtonLabel;
+            _textTranslate.TranslationName = _equipButtonLabel;
         }
         else
         {
             _progress.value = _skinPress.AdvertisingWatched / Convert.ToSingle(_skinPress.NeedWatchAdvertising);
             _textProgress.text = $"{_skinPress.AdvertisingWatched}/{_skinPress.NeedWatchAdvertising}";
-            _buttonText.text = _showAdvertisingButtonLabel;
+            _textTranslate.TranslationName = _showAdvertisingButtonLabel;
         }
     }
 }

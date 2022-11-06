@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ConstituentPart : MonoBehaviour
 {
-    private readonly float _speed = 0.3f;
+    private readonly float _speed = 0.05f;
     private Vector3 _randomMoveDirection;
 
     private void Start()
