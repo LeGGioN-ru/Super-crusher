@@ -1,10 +1,10 @@
-using System;
 using UnityEngine;
 
 public class WinParticlesStarter : MonoBehaviour
 {
     [SerializeField] private ParticleSystem[] _particles;
     [SerializeField] private ItemSpawner _spawner;
+    [SerializeField] private SoundSettings _soundSettings;
 
     private void OnEnable()
     {
@@ -25,6 +25,8 @@ public class WinParticlesStarter : MonoBehaviour
     {
         foreach (ParticleSystem particle in _particles)
             particle.Play();
+
+        _soundSettings.PlaySound();
 
         item.Destroyed -= Execute;
     }

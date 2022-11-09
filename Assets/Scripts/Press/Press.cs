@@ -59,9 +59,6 @@ public class Press : MonoBehaviour
 
     private void HitPart()
     {
-        if (_currentPart == null)
-            return;
-
         float percentItemDamage = _currentPart.TakeDamage(_power);
         _wallet.AddMoney(Convert.ToInt32(_currentPart.Money * percentItemDamage));
         PartHitted?.Invoke();

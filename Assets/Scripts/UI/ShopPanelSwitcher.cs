@@ -1,13 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Animator))]
 public class ShopPanelSwitcher : MonoBehaviour
 {
     [SerializeField] private Image _panel;
     [SerializeField] private Button _openButton;
     [SerializeField] private Button _closeButton;
     [SerializeField] private PressMoverForward _mover;
-    [SerializeField] private UIVisibleSwitcher _visibleSwitcher;
+
+    private Animator _animator;
+
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
 
     private void OnEnable()
     {
@@ -24,16 +31,12 @@ public class ShopPanelSwitcher : MonoBehaviour
     private void OnCloseButtonClick()
     {
         _mover.enabled = true;
-        _closeButton.interactable = false;
-        _openButton.interactable = true;
-        _panel.gameObject.SetActive(false);
+        _animator.Play(ShopAnimationController.State.Hide);
     }
 
     private void OnOpenButtonClick()
     {
         _mover.enabled = false;
-        _openButton.interactable = false;
-        _closeButton.interactable = true;
-        _panel.gameObject.SetActive(true);
+        _animator.Play(ShopAnimationController.State.Show);
     }
 }

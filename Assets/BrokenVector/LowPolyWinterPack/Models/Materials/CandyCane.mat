@@ -102,15 +102,15 @@ Material:
     - _Metallic: 0.39
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _OutlineDepthOffset: 0.219
-    - _OutlineWidth: 3.52
+    - _OutlineDepthOffset: 0.019
+    - _OutlineWidth: 0.74
     - _OverrideLightmapDir: 0
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _RimEnabled: 0
     - _SelfShadingSize: 1
     - _SelfShadingSizeExtra: 0.6
-    - _ShadowEdgeSize: 0.05
+    - _ShadowEdgeSize: 0.068
     - _ShadowEdgeSizeExtra: 0.05
     - _SmoothnessTextureChannel: 0
     - _SpecularEnabled: 0

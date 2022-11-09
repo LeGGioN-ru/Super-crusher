@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
@@ -17,12 +18,18 @@ public class ItemSpawner : MonoBehaviour
 
     public event Action<Item> Spawned;
 
+    public IReadOnlyCollection<Item> Items => _items;
     public Item CurrentItem => _currentItem;
     public bool IsCurrentItemBeDestroyed => _isCurrentItemBeDestroyed;
 
     private void Start()
     {
         Execute();
+    }
+
+    public void SetItems(IReadOnlyCollection<Item> items)
+    {
+        _items = items.ToList();
     }
 
     public void UpgradeParts(PartStats partStats)

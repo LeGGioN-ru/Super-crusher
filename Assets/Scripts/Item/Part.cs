@@ -12,7 +12,7 @@ public class Part : MonoBehaviour
     public event Action<Part> Destroyed;
 
     public bool IsHittable => _stats.Durability > 0;
-    public int Money => _stats.Money;
+    public long Money => _stats.Money;
 
     public void SetStats(PartStats partStats)
     {

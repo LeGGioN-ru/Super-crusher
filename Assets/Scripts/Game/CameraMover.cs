@@ -1,5 +1,4 @@
 using DG.Tweening;
-using System;
 using UnityEngine;
 
 public class CameraMover : MonoBehaviour
@@ -11,13 +10,11 @@ public class CameraMover : MonoBehaviour
     [SerializeField] private GameRestarter _restarter;
     [SerializeField] private float _moveDuration;
 
-    private Camera _camera;
     private int _currentCameraPositionIndex;
 
     private void Awake()
     {
-        _camera = Camera.main;
-        _camera.transform.position = _cameraPositions[_currentCameraPositionIndex].position;
+        transform.position = _cameraPositions[_currentCameraPositionIndex].position;
     }
 
     private void OnEnable()
@@ -58,7 +55,7 @@ public class CameraMover : MonoBehaviour
 
     private void Execute()
     {
-        _camera.transform.DOMove(_cameraPositions[_currentCameraPositionIndex].position, _moveDuration);
+        transform.DOMove(_cameraPositions[_currentCameraPositionIndex].position, _moveDuration);
     }
 
     private void OnPressMoved()

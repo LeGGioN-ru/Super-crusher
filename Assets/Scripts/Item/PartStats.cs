@@ -4,16 +4,16 @@ using UnityEngine;
 [Serializable]
 public class PartStats
 {
-    [SerializeField] private int _money;
+    [SerializeField] private long _money;
     [SerializeField] private int _durability;
 
     private int _maxDurability;
 
     public int MaxDurability => _maxDurability;
-    public int Money => _money;
+    public long Money => _money;
     public int Durability => _durability;
 
-    public PartStats(int money, int durability)
+    public PartStats(long money, int durability)
     {
         _money = money;
         _durability = durability;

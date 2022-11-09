@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class UIVisibleSwitcher : MonoBehaviour
@@ -6,6 +7,7 @@ public class UIVisibleSwitcher : MonoBehaviour
     [SerializeField] private GameRestarter _gameRestarter;
     [SerializeField] private Animator _shopUpgrades;
     [SerializeField] private Animator _energyBar;
+    [SerializeField] private TMP_Text _text;
 
     private void OnEnable()
     {
@@ -23,12 +25,14 @@ public class UIVisibleSwitcher : MonoBehaviour
 
     private void OnPressMoved()
     {
+        _text.enabled = false;
         _shopUpgrades.Play(ShopUpgradesAnimationController.State.Hide);
         _energyBar.Play(EnergyBarAnimationController.State.Show);
     }
 
     private void OnRestarted()
     {
+        _text.enabled = true;
         _shopUpgrades.Play(ShopUpgradesAnimationController.State.Show);
     }
 
