@@ -26,5 +26,7 @@ public class GameSaver : MonoBehaviour
 
     private void OnGameRestarted()
     {
+        var save = JsonConvert.SerializeObject(_itemUp, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+        Debug.Log(save);
     }
 }

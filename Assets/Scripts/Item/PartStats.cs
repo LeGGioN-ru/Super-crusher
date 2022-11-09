@@ -27,10 +27,10 @@ public class PartStats
         _maxDurability = partStats.Durability;
     }
 
-    public void Merge(PartStats partStat)
+    public void Merge(int durability, float moneyIncrease)
     {
-        _money *= partStat.Money;
-        _durability += partStat.Durability;
+        _money = Convert.ToInt64(_money * moneyIncrease);
+        _durability += durability;
     }
 
     public void ReduceDurability(int damage)

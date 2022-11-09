@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Base
-  m_Shader: {fileID: 4800000, guid: f7e38193b7f064d7380403618fd8b69e, type: 3}
+  m_Shader: {fileID: 4800000, guid: bee44b4a58655ee4cbff107302a3e131, type: 3}
   m_ValidKeywords:
   - DR_CEL_EXTRA_ON
   - DR_GRADIENT_ON
@@ -102,7 +102,7 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _OutlineDepthOffset: 0
+    - _OutlineDepthOffset: 1
     - _OutlineWidth: -3.79
     - _OverrideLightmapDir: 0
     - _Parallax: 0.02

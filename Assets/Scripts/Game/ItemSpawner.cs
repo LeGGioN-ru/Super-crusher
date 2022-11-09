@@ -32,9 +32,9 @@ public class ItemSpawner : MonoBehaviour
         _items = items.ToList();
     }
 
-    public void UpgradeParts(PartStats partStats)
+    public void UpgradeParts(int durabilityIncrease, float priceIncrease)
     {
-        _partStats.Merge(partStats);
+        _partStats.Merge(durabilityIncrease,priceIncrease);
         _isCurrentItemBeDestroyed = false;
     }
 

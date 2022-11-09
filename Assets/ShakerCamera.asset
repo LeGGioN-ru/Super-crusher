@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ShakerCamera
   m_EditorClassIdentifier: 
   shakeType: 1
-  strength: 0.2
+  strength: 0.3
   roughness: 5
   fadeIn: 0
   fadeOut: 0

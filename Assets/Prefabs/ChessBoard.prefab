@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2937201576125428476}
   - component: {fileID: 2937201576125428477}
   - component: {fileID: 2937201576125428474}
-  - component: {fileID: 5564454133318608906}
+  - component: {fileID: 6995598173241668301}
   m_Layer: 0
   m_Name: props_130_sh_8
   m_TagString: Untagged
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40cf115532d939347a314ae8df62c60d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!64 &5564454133318608906
+--- !u!64 &6995598173241668301
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 2937201576154358154}
   - component: {fileID: 2937201576154358155}
   - component: {fileID: 2937201576154358152}
-  - component: {fileID: 5518857139782018202}
+  - component: {fileID: 7393367684792294160}
   m_Layer: 0
   m_Name: props_130_sh_10
   m_TagString: Untagged
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40cf115532d939347a314ae8df62c60d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!64 &5518857139782018202
+--- !u!64 &7393367684792294160
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 2937201576430875332}
   - component: {fileID: 2937201576430875333}
   - component: {fileID: 2937201576430875330}
-  - component: {fileID: 2917728145051487587}
+  - component: {fileID: 3907900122336853955}
   m_Layer: 0
   m_Name: props_130_sh_6
   m_TagString: Untagged
@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40cf115532d939347a314ae8df62c60d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!64 &2917728145051487587
+--- !u!64 &3907900122336853955
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -349,6 +349,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2937201576580427989}
   - component: {fileID: 2937201576580427990}
+  - component: {fileID: 2858691939410835804}
   m_Layer: 0
   m_Name: ChessBoard
   m_TagString: Untagged
@@ -384,6 +385,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86fa0078d39b92541a67c79d0e2533ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2858691939410835804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2937201576580427991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &2937201576626801421
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,7 +415,7 @@ GameObject:
   - component: {fileID: 2937201576626801418}
   - component: {fileID: 2937201576626801419}
   - component: {fileID: 2937201576626801416}
-  - component: {fileID: 6148772692783311149}
+  - component: {fileID: 7837597420169660379}
   m_Layer: 0
   m_Name: props_130_sh_3
   m_TagString: Untagged
@@ -483,7 +502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40cf115532d939347a314ae8df62c60d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!64 &6148772692783311149
+--- !u!64 &7837597420169660379
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -509,7 +528,7 @@ GameObject:
   - component: {fileID: 2937201576731705404}
   - component: {fileID: 2937201576731705405}
   - component: {fileID: 2937201576731705402}
-  - component: {fileID: 933976567026222915}
+  - component: {fileID: 1280012417683028900}
   m_Layer: 0
   m_Name: props_130_sh_7
   m_TagString: Untagged
@@ -596,7 +615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40cf115532d939347a314ae8df62c60d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!64 &933976567026222915
+--- !u!64 &1280012417683028900
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -783,16 +802,16 @@ MonoBehaviour:
     rigidBody: {fileID: 0}
     meshCollider: {fileID: 0}
     clusterColliders:
-    - {fileID: 7703204043027283073}
-    - {fileID: 2917728145051487587}
-    - {fileID: 6087054568688511899}
-    - {fileID: 7634106837956709616}
-    - {fileID: 6148772692783311149}
-    - {fileID: 6535595117082932043}
-    - {fileID: 3929164692195263556}
-    - {fileID: 933976567026222915}
-    - {fileID: 5564454133318608906}
-    - {fileID: 5518857139782018202}
+    - {fileID: 7733858200026925051}
+    - {fileID: 3907900122336853955}
+    - {fileID: 1977527327461174570}
+    - {fileID: 1553861196297789456}
+    - {fileID: 7837597420169660379}
+    - {fileID: 2295057033609235133}
+    - {fileID: 1327843381828205260}
+    - {fileID: 1280012417683028900}
+    - {fileID: 6995598173241668301}
+    - {fileID: 7393367684792294160}
   activation:
     byVelocity: 0
     byOffset: 0
@@ -883,22 +902,22 @@ MonoBehaviour:
         nIds: 
         nArea: []
         rigid: {fileID: 0}
-        col: {fileID: 7703204043027283073}
+        col: {fileID: 7733858200026925051}
         rb: {fileID: 0}
       - id: 1
         tm: {fileID: 2937201576430875334}
         pos: {x: 0, y: 0, z: 0}
         rot: {x: 0, y: 0, z: 0, w: 0}
         bnd:
-          m_Center: {x: -0.23376428, y: 0.4032564, z: -0.060981844}
-          m_Extent: {x: 0.32116246, y: 0.23467028, z: 0.06598187}
+          m_Center: {x: -0.23376426, y: 0.4032564, z: -0.060981844}
+          m_Extent: {x: 0.3211625, y: 0.23467028, z: 0.06598187}
         sz: 0.80639714
         uny: 0
         nAm: 0
         nIds: 
         nArea: []
         rigid: {fileID: 0}
-        col: {fileID: 2917728145051487587}
+        col: {fileID: 3907900122336853955}
         rb: {fileID: 0}
       - id: 2
         tm: {fileID: 2937201577924451472}
@@ -913,7 +932,7 @@ MonoBehaviour:
         nIds: 
         nArea: []
         rigid: {fileID: 0}
-        col: {fileID: 6087054568688511899}
+        col: {fileID: 1977527327461174570}
         rb: {fileID: 0}
       areaCollapse: 0
       minimumArea: 0
@@ -948,22 +967,22 @@ MonoBehaviour:
         nIds: 
         nArea: []
         rigid: {fileID: 0}
-        col: {fileID: 7634106837956709616}
+        col: {fileID: 1553861196297789456}
         rb: {fileID: 0}
       - id: 1
         tm: {fileID: 2937201576626801420}
         pos: {x: 0, y: 0, z: 0}
         rot: {x: 0, y: 0, z: 0, w: 0}
         bnd:
-          m_Center: {x: 0.20554093, y: -0.29055744, z: -0.060981844}
-          m_Extent: {x: 0.34938562, y: 0.18136923, z: 0.06598187}
-        sz: 0.79829496
+          m_Center: {x: 0.20554091, y: -0.29055744, z: -0.060981844}
+          m_Extent: {x: 0.34938565, y: 0.18136923, z: 0.06598187}
+        sz: 0.798295
         uny: 0
         nAm: 0
         nIds: 
         nArea: []
         rigid: {fileID: 0}
-        col: {fileID: 6148772692783311149}
+        col: {fileID: 7837597420169660379}
         rb: {fileID: 0}
       - id: 2
         tm: {fileID: 2937201577450000356}
@@ -978,37 +997,37 @@ MonoBehaviour:
         nIds: 
         nArea: []
         rigid: {fileID: 0}
-        col: {fileID: 6535595117082932043}
+        col: {fileID: 2295057033609235133}
         rb: {fileID: 0}
       - id: 3
         tm: {fileID: 2937201577883512441}
         pos: {x: 0, y: 0, z: 0}
         rot: {x: 0, y: 0, z: 0, w: 0}
         bnd:
-          m_Center: {x: 0.3679686, y: -0.14599541, z: -0.060981844}
-          m_Extent: {x: 0.1869582, y: 0.24089965, z: 0.06598187}
-        sz: 0.62398595
+          m_Center: {x: 0.3679686, y: -0.1459954, z: -0.060981844}
+          m_Extent: {x: 0.1869582, y: 0.24089968, z: 0.06598187}
+        sz: 0.623986
         uny: 0
         nAm: 0
         nIds: 
         nArea: []
         rigid: {fileID: 0}
-        col: {fileID: 3929164692195263556}
+        col: {fileID: 1327843381828205260}
         rb: {fileID: 0}
       - id: 4
         tm: {fileID: 2937201576731705406}
         pos: {x: 0, y: 0, z: 0}
         rot: {x: 0, y: 0, z: 0, w: 0}
         bnd:
-          m_Center: {x: -0.1957667, y: -0.0473957, z: -0.06098186}
-          m_Extent: {x: 0.338955, y: 0.30906206, z: 0.06598187}
+          m_Center: {x: -0.19576669, y: -0.0473957, z: -0.06098186}
+          m_Extent: {x: 0.33895501, y: 0.30906206, z: 0.06598187}
         sz: 0.9268516
         uny: 0
         nAm: 0
         nIds: 
         nArea: []
         rigid: {fileID: 0}
-        col: {fileID: 933976567026222915}
+        col: {fileID: 1280012417683028900}
         rb: {fileID: 0}
       - id: 5
         tm: {fileID: 2937201576125428478}
@@ -1023,7 +1042,7 @@ MonoBehaviour:
         nIds: 
         nArea: []
         rigid: {fileID: 0}
-        col: {fileID: 5564454133318608906}
+        col: {fileID: 6995598173241668301}
         rb: {fileID: 0}
       - id: 6
         tm: {fileID: 2937201576154358156}
@@ -1038,7 +1057,7 @@ MonoBehaviour:
         nIds: 
         nArea: []
         rigid: {fileID: 0}
-        col: {fileID: 5518857139782018202}
+        col: {fileID: 7393367684792294160}
         rb: {fileID: 0}
       areaCollapse: 0
       minimumArea: 0
@@ -1111,7 +1130,7 @@ GameObject:
   - component: {fileID: 2937201577450000354}
   - component: {fileID: 2937201577450000355}
   - component: {fileID: 2937201577450000352}
-  - component: {fileID: 6535595117082932043}
+  - component: {fileID: 2295057033609235133}
   m_Layer: 0
   m_Name: props_130_sh_4
   m_TagString: Untagged
@@ -1198,7 +1217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40cf115532d939347a314ae8df62c60d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!64 &6535595117082932043
+--- !u!64 &2295057033609235133
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1224,7 +1243,7 @@ GameObject:
   - component: {fileID: 2937201577707015251}
   - component: {fileID: 2937201577707015252}
   - component: {fileID: 2937201577707015249}
-  - component: {fileID: 7634106837956709616}
+  - component: {fileID: 1553861196297789456}
   m_Layer: 0
   m_Name: props_130_sh_2
   m_TagString: Untagged
@@ -1311,7 +1330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40cf115532d939347a314ae8df62c60d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!64 &7634106837956709616
+--- !u!64 &1553861196297789456
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1337,7 +1356,7 @@ GameObject:
   - component: {fileID: 2937201577883512711}
   - component: {fileID: 2937201577883512440}
   - component: {fileID: 2937201577883512709}
-  - component: {fileID: 3929164692195263556}
+  - component: {fileID: 1327843381828205260}
   m_Layer: 0
   m_Name: props_130_sh_5
   m_TagString: Untagged
@@ -1424,7 +1443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40cf115532d939347a314ae8df62c60d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!64 &3929164692195263556
+--- !u!64 &1327843381828205260
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1450,7 +1469,7 @@ GameObject:
   - component: {fileID: 2937201577891467323}
   - component: {fileID: 2937201577891467324}
   - component: {fileID: 2937201577891467321}
-  - component: {fileID: 7703204043027283073}
+  - component: {fileID: 7733858200026925051}
   m_Layer: 0
   m_Name: props_130_sh_1
   m_TagString: Untagged
@@ -1537,7 +1556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40cf115532d939347a314ae8df62c60d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!64 &7703204043027283073
+--- !u!64 &7733858200026925051
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1563,7 +1582,7 @@ GameObject:
   - component: {fileID: 2937201577924451486}
   - component: {fileID: 2937201577924451487}
   - component: {fileID: 2937201577924451484}
-  - component: {fileID: 6087054568688511899}
+  - component: {fileID: 1977527327461174570}
   m_Layer: 0
   m_Name: props_130_sh_9
   m_TagString: Untagged
@@ -1650,7 +1669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40cf115532d939347a314ae8df62c60d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!64 &6087054568688511899
+--- !u!64 &1977527327461174570
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

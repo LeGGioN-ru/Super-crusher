@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Hit
   m_EditorClassIdentifier: 
   shakeType: 0
-  strength: 1
+  strength: 1.5
   roughness: 4
   fadeIn: 0
   fadeOut: 1
-  positionInfluence: {x: 0.7, y: 0.7, z: 0}
+  positionInfluence: {x: 0.4, y: 0.4, z: 0}
   rotationInfluence: {x: 0, y: 0, z: 0}
