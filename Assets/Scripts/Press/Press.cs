@@ -3,18 +3,26 @@ using UnityEngine;
 
 public class Press : MonoBehaviour
 {
-    [SerializeField] private int _power;
+    [SerializeField] private int _startPower;
     [SerializeField] private PressMoverForward _mover;
     [SerializeField] private float _hitDelay;
     [SerializeField] private Wallet _wallet;
 
     private Part _currentPart;
     private float _passedTime;
+    private int _currentPower;
 
-    public int Power => _power;
+    public int StartPower => _startPower;
+    public int CurrentPower => _currentPower;
 
     public event Action<Part> PartDetected;
     public event Action PartHitted;
+    public event Action PowerSetted;
+
+    private void Start()
+    {
+        _currentPower = _startPower;
+    }
 
     private void OnEnable()
     {
@@ -52,14 +60,23 @@ public class Press : MonoBehaviour
         HitPart();
     }
 
+    public void SetPower(int power)
+    {
+        if (power <= 0)
+            throw new ArgumentException(nameof(power));
+
+        _currentPower = power;
+        PowerSetted?.Invoke();
+    }
+
     public void UpgradePower(int powerUp)
     {
-        _power += powerUp;
+        _currentPower += powerUp;
     }
 
     private void HitPart()
     {
-        float percentItemDamage = _currentPart.TakeDamage(_power);
+        float percentItemDamage = _currentPart.TakeDamage(_currentPower);
         _wallet.AddMoney(Convert.ToInt32(_currentPart.Money * percentItemDamage));
         PartHitted?.Invoke();
     }

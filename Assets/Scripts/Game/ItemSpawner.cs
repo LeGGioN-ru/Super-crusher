@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
@@ -15,9 +14,15 @@ public class ItemSpawner : MonoBehaviour
 
     private Item _currentItem;
     private bool _isCurrentItemBeDestroyed;
+    private int _startDurability;
+    private int _amountRepeats;
 
     public event Action<Item> Spawned;
+    public event Action PartStatsSetted;
 
+    public int AmountRepeats => _amountRepeats;
+    public int StartDurability => _startDurability;
+    public PartStats PartStats => _partStats;
     public IReadOnlyCollection<Item> Items => _items;
     public Item CurrentItem => _currentItem;
     public bool IsCurrentItemBeDestroyed => _isCurrentItemBeDestroyed;
@@ -25,16 +30,26 @@ public class ItemSpawner : MonoBehaviour
     private void Start()
     {
         Execute();
+        _startDurability = _partStats.MaxDurability;
     }
 
-    public void SetItems(IReadOnlyCollection<Item> items)
+    public void SetSave(PartStats partStats, int amountItemsRepeat)
     {
-        _items = items.ToList();
+        _partStats = partStats;
+
+        for (int i = 0; i < amountItemsRepeat; i++)
+            _items.AddRange(_items);
+
+        PartStatsSetted?.Invoke();
+
+        Destroy(CurrentItem.gameObject);
+        Execute();
+
     }
 
     public void UpgradeParts(int durabilityIncrease, float priceIncrease)
     {
-        _partStats.Merge(durabilityIncrease,priceIncrease);
+        _partStats.Merge(durabilityIncrease, priceIncrease);
         _isCurrentItemBeDestroyed = false;
     }
 
@@ -56,7 +71,7 @@ public class ItemSpawner : MonoBehaviour
         if (_items.Count == 0)
             throw new InvalidOperationException(nameof(GetItem));
 
-        int itemNumber = Convert.ToInt32(_itemUp.Level / _levelItemUp);
+        int itemNumber = Convert.ToInt32(_itemUp.CurrentLevel / _levelItemUp);
 
         if (itemNumber >= _items.Count)
             AddSimularItems();
@@ -67,6 +82,7 @@ public class ItemSpawner : MonoBehaviour
     private void AddSimularItems()
     {
         _items.AddRange(_items);
+        _amountRepeats++;
     }
 
     private void OnDestroyed(Item item)

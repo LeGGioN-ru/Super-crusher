@@ -17,6 +17,8 @@ public class SkinPressView : MonoBehaviour
 
     private SkinPress _skinPress;
 
+    public SkinPress SkinPress => _skinPress;
+
     public void Init(SkinPress skinPress)
     {
         _image.sprite = skinPress.PreviewImage;
@@ -35,17 +37,7 @@ public class SkinPressView : MonoBehaviour
         _button.onClick.RemoveListener(OnButtonClick);
     }
 
-    private void OnButtonClick()
-    {
-        if (_skinPress.IsAvalible)
-            _skinPress.SetModel();
-        else
-            _skinPress.ShowAdvertising();
-
-        UpdateUI();
-    }
-
-    private void UpdateUI()
+    public void UpdateUI()
     {
         if (_skinPress.IsAvalible)
         {
@@ -59,5 +51,15 @@ public class SkinPressView : MonoBehaviour
             _textProgress.text = $"{_skinPress.AdvertisingWatched}/{_skinPress.NeedWatchAdvertising}";
             _textTranslate.TranslationName = _showAdvertisingButtonLabel;
         }
+    }
+
+    private void OnButtonClick()
+    {
+        if (_skinPress.IsAvalible)
+            _skinPress.SetModel();
+        else
+            _skinPress.ShowAdvertising();
+
+        UpdateUI();
     }
 }

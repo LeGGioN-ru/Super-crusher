@@ -6,41 +6,49 @@ public abstract class Upgrader : MonoBehaviour
     [SerializeField] private Wallet _wallet;
     [SerializeField] private ParticleSystem _particleSystem;
     [SerializeField] private SoundSettings _soundSettings;
-    [SerializeField] private long _price;
+    [SerializeField] protected long Price;
     [SerializeField] private float _priceIncrease;
 
-    private int _level;
+    protected int Level;
 
     public event Action<int, long> Changed;
 
     public Wallet Wallet => _wallet;
-    public int Level => _level;
-    public long Price => _price;
+    public int CurrentLevel => Level;
+    public long CurrentPrice => Price;
+    public float PriceIncrease => _priceIncrease;
 
     public void Execute()
     {
-        if (_wallet.CurrentMoney < _price)
+        if (_wallet.CurrentMoney < Price)
             return;
 
         _soundSettings.PlaySound();
         TryPlayParticles();
 
-        _wallet.ReduceMoney(_price);
+        _wallet.ReduceMoney(Price);
         UpgradeTarget();
-        _price = Convert.ToInt64(_price * _priceIncrease);
-        _level++;
-        Changed?.Invoke(_level, _price);
-    }
-
-    public void SetData(Upgrader upgrader)
-    {
-        _price = upgrader.Price;
-        _priceIncrease = upgrader.Price;
-        _level = upgrader.Level;
-        Changed?.Invoke(_level, _price);
+        Price = Convert.ToInt64(Price * _priceIncrease);
+        Level++;
+        Changed?.Invoke(Level, Price);
     }
 
     abstract protected void UpgradeTarget();
+
+    protected void CalculateStats(int startValue, int maxValue, int addValue)
+    {
+        Level = CalculateLevel(startValue, maxValue, addValue);
+
+        for (int i = 0; i < Level; i++)
+            Price = Convert.ToInt64(Price * PriceIncrease);
+
+        Changed?.Invoke(Level, Price);
+    }
+
+    private int CalculateLevel(int startValue, int maxValue, int addValue)
+    {
+        return (maxValue - startValue) / addValue;
+    }
 
     private void TryPlayParticles()
     {

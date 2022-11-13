@@ -890,6 +890,20 @@ MonoBehaviour:
       m_Height: 0
     m_Scale: 1
     m_AtlasIndex: 0
+  - m_Index: 470
+    m_Metrics:
+      m_Width: 0
+      m_Height: 0
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 0
+      m_HorizontalAdvance: 74.96875
+    m_GlyphRect:
+      m_X: 0
+      m_Y: 0
+      m_Width: 0
+      m_Height: 0
+    m_Scale: 1
+    m_AtlasIndex: 0
   - m_Index: 477
     m_Metrics:
       m_Width: 0
@@ -1030,6 +1044,20 @@ MonoBehaviour:
       m_Height: 0
     m_Scale: 1
     m_AtlasIndex: 0
+  - m_Index: 497
+    m_Metrics:
+      m_Width: 0
+      m_Height: 0
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 0
+      m_HorizontalAdvance: 41.265625
+    m_GlyphRect:
+      m_X: 0
+      m_Y: 0
+      m_Width: 0
+      m_Height: 0
+    m_Scale: 1
+    m_AtlasIndex: 0
   - m_Index: 498
     m_Metrics:
       m_Width: 0
@@ -1065,6 +1093,20 @@ MonoBehaviour:
       m_HorizontalBearingX: 0
       m_HorizontalBearingY: 0
       m_HorizontalAdvance: 39.375
+    m_GlyphRect:
+      m_X: 0
+      m_Y: 0
+      m_Width: 0
+      m_Height: 0
+    m_Scale: 1
+    m_AtlasIndex: 0
+  - m_Index: 503
+    m_Metrics:
+      m_Width: 0
+      m_Height: 0
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 0
+      m_HorizontalAdvance: 49.703125
     m_GlyphRect:
       m_X: 0
       m_Y: 0
@@ -1394,6 +1436,10 @@ MonoBehaviour:
     m_GlyphIndex: 468
     m_Scale: 1
   - m_ElementType: 1
+    m_Unicode: 1052
+    m_GlyphIndex: 470
+    m_Scale: 1
+  - m_ElementType: 1
     m_Unicode: 1059
     m_GlyphIndex: 477
     m_Scale: 1
@@ -1434,6 +1480,10 @@ MonoBehaviour:
     m_GlyphIndex: 496
     m_Scale: 1
   - m_ElementType: 1
+    m_Unicode: 1079
+    m_GlyphIndex: 497
+    m_Scale: 1
+  - m_ElementType: 1
     m_Unicode: 1080
     m_GlyphIndex: 498
     m_Scale: 1
@@ -1444,6 +1494,10 @@ MonoBehaviour:
   - m_ElementType: 1
     m_Unicode: 1082
     m_GlyphIndex: 500
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 1085
+    m_GlyphIndex: 503
     m_Scale: 1
   - m_ElementType: 1
     m_Unicode: 1086

@@ -1,20 +1,26 @@
 using System;
-using System.Collections.Generic;
 
 [Serializable]
 public class Save
 {
-    public PowerUp PowerUp;
-    public EnergyUp EnergyUp;
-    public ItemUp ItemUp;
-    public IReadOnlyCollection<Item> Items;
+    public int Power;
+    public int Energy;
+    public long ItemMoney;
+    public int ItemDurability;
+    public int CurrentItemIndex;
+    public int AmountRepeatItems;
+    public long Money;
+    public int[] SkinsAdvertisingWatched;
 
-    public Save(PowerUp powerUp, EnergyUp energyUp, ItemUp itemUp, IReadOnlyCollection<Item> items)
+    public Save(int durability, long itemMoney, int power, int energy, long money, int[] skinsAdvertisingWatched, int amountRepeats)
     {
-        PowerUp = powerUp;
-        EnergyUp = energyUp;
-        ItemUp = itemUp;
-        Items = items;
+        Power = power;
+        Energy = energy;
+        ItemMoney = itemMoney;
+        ItemDurability = durability;
+        AmountRepeatItems = amountRepeats;
+        Money = money;
+        SkinsAdvertisingWatched = skinsAdvertisingWatched;
     }
 }
 

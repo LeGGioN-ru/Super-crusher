@@ -21,7 +21,7 @@ public class PressEnergyView : MonoBehaviour
 
     private void OnChanged(float currentEnergy)
     {
-        currentEnergy = Math.Clamp(currentEnergy, 0, float.MaxValue);
+        currentEnergy = Convert.ToInt32(Math.Clamp(currentEnergy, 0, float.MaxValue));
 
         _text.text = $"{currentEnergy}/{_pressEnergy.Energy}";
         _energyBar.value = currentEnergy / _pressEnergy.Energy;

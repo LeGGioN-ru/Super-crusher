@@ -10,6 +10,12 @@ public class Wallet : MonoBehaviour
     public event Action<long> MoneyAdded;
     public event Action<long> MoneyReduced;
 
+    public void SetCurrentMoney(long money)
+    {
+        _currentMoney = money;
+        MoneyAdded?.Invoke(_currentMoney);
+    }
+
     public void AddMoney(long money)
     {
         _currentMoney += money;

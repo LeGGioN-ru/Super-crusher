@@ -1,3 +1,4 @@
+using Agava.YandexGames;
 using System;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ public class SkinPress
     private MeshFilter _pressModel;
     private int _advertisingWatched;
 
+    public event Action<int> Loaded;
+
     public Sprite PreviewImage => _previewImage;
     public int AdvertisingWatched => _advertisingWatched;
     public int NeedWatchAdvertising => _needWatchAdvertising;
@@ -22,8 +25,19 @@ public class SkinPress
         _pressModel = pressModel;
     }
 
+    public void SetAdvertisingWatched(int advertisingWatched)
+    {
+        _advertisingWatched = advertisingWatched;
+    }
+
     public void ShowAdvertising()
     {
+#if !UNITY_WEBGL || UNITY_EDITOR
+        _advertisingWatched++;
+        return;
+#endif
+
+        VideoAd.Show();
         _advertisingWatched++;
     }
 

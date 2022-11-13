@@ -11,15 +11,24 @@ public class PressEnergy : MonoBehaviour
     private Press _press;
     private float _currentEnergy;
     private float _energyReduced;
+    private int _startEnergy;
 
     public int Energy => _energy;
+    public int StartEnergy => _startEnergy;
 
     public event Action<float> Changed;
     public event Action EnergyEnded;
+    public event Action EnergySetted;
 
     private void Awake()
     {
         _press = GetComponent<Press>();
+        _startEnergy = _energy;
+    }
+
+    private void Start()
+    {
+        ResetEnergy();
     }
 
     private void OnEnable()
@@ -34,6 +43,15 @@ public class PressEnergy : MonoBehaviour
         _press.PartHitted -= OnPartHitted;
     }
 
+    public void SetEnergy(int energy)
+    {
+        if (_energy <= 0)
+            throw new ArgumentException(nameof(Energy));
+
+        _energy = energy;
+        EnergySetted?.Invoke();
+    }
+
     public void UpgradeEnergy(int powerUp)
     {
         _energy += powerUp;
@@ -42,7 +60,7 @@ public class PressEnergy : MonoBehaviour
 
     private void ResetEnergy()
     {
-        _energyReduced = _press.Power * _percentEnergyReducing;
+        _energyReduced = _press.CurrentPower * _percentEnergyReducing;
         _currentEnergy = _energy;
 
         Changed?.Invoke(_currentEnergy);

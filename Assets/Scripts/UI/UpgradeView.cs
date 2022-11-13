@@ -18,7 +18,7 @@ public abstract class UpgradeView : MonoBehaviour
         _upgrader = GetComponent<Upgrader>();
         _button = GetComponent<Button>();
 
-        OnUpgraded(_upgrader.Level, _upgrader.Price);
+        OnUpgraded(_upgrader.CurrentLevel, _upgrader.CurrentPrice);
         CheckAvalible();
     }
 
@@ -66,6 +66,6 @@ public abstract class UpgradeView : MonoBehaviour
 
     protected virtual bool IsUpgradeAvalible()
     {
-        return _upgrader.Wallet.CurrentMoney >= _upgrader.Price;
+        return _upgrader.Wallet.CurrentMoney >= _upgrader.CurrentPrice;
     }
 }
