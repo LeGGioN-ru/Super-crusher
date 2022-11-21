@@ -56,7 +56,7 @@ public class GameInitializator : MonoBehaviour
         _spawner.SetSave(new PartStats(save.ItemIncome, save.ItemDurability), save.AmountRepeatsItems);
         _skinGenerator.SetAdvertisingWatched(save.SkinsAdvertisingWatched);
 
-        if (_education.IsDone)
+        if (save.IsEducatuionDone)
             _education.gameObject.SetActive(false);
     }
 }
