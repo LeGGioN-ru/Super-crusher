@@ -22,35 +22,13 @@ public class ItemSpawner : MonoBehaviour
 
     public int AmountRepeats => _amountRepeats;
     public int StartDurability => _startDurability;
-    public PartStats PartStats => _partStats;
-    public IReadOnlyCollection<Item> Items => _items;
-    public Item CurrentItem => _currentItem;
+    public IReadablePartStats PartStats => _partStats;
     public bool IsCurrentItemBeDestroyed => _isCurrentItemBeDestroyed;
 
     private void Start()
     {
         Execute();
         _startDurability = _partStats.MaxDurability;
-    }
-
-    public void SetSave(PartStats partStats, int amountItemsRepeat)
-    {
-        _partStats = partStats;
-
-        for (int i = 0; i < amountItemsRepeat; i++)
-            _items.AddRange(_items);
-
-        PartStatsSetted?.Invoke();
-
-        Destroy(CurrentItem.gameObject);
-        Execute();
-
-    }
-
-    public void UpgradeParts(int durabilityIncrease, float priceIncrease)
-    {
-        _partStats.Merge(durabilityIncrease, priceIncrease);
-        _isCurrentItemBeDestroyed = false;
     }
 
     public void Execute()
@@ -71,7 +49,7 @@ public class ItemSpawner : MonoBehaviour
         if (_items.Count == 0)
             throw new InvalidOperationException(nameof(GetItem));
 
-        int itemNumber = Convert.ToInt32(_itemUp.CurrentLevel / _levelItemUp);
+        int itemNumber = Convert.ToInt32(_itemUp.Level / _levelItemUp);
 
         if (itemNumber >= _items.Count)
             AddSimularItems();
@@ -79,15 +57,33 @@ public class ItemSpawner : MonoBehaviour
         return _items[itemNumber];
     }
 
-    private void AddSimularItems()
-    {
-        _items.AddRange(_items);
-        _amountRepeats++;
-    }
-
     private void OnDestroyed(Item item)
     {
         _isCurrentItemBeDestroyed = true;
         _currentItem.Destroyed -= OnDestroyed;
+    }
+
+    public void SetSave(PartStats partStats, int amountItemsRepeat)
+    {
+        _partStats = partStats;
+        PartStatsSetted?.Invoke();
+
+        for (int i = 0; i < amountItemsRepeat; i++)
+            _items.AddRange(_items);
+
+        Destroy(_currentItem.gameObject);
+        Execute();
+    }
+
+    public void UpgradeParts(int durabilityIncrease, float priceIncrease)
+    {
+        _isCurrentItemBeDestroyed = false;
+        _partStats.Merge(durabilityIncrease, priceIncrease);
+    }
+
+    private void AddSimularItems()
+    {
+        _items.AddRange(_items);
+        _amountRepeats++;
     }
 }

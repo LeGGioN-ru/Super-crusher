@@ -7,19 +7,18 @@ public class Wallet : MonoBehaviour
 
     public long CurrentMoney => _currentMoney;
 
-    public event Action<long> MoneyAdded;
-    public event Action<long> MoneyReduced;
+    public event Action<long> MoneyChanged;
 
     public void SetCurrentMoney(long money)
     {
         _currentMoney = money;
-        MoneyAdded?.Invoke(_currentMoney);
+        MoneyChanged?.Invoke(_currentMoney);
     }
 
     public void AddMoney(long money)
     {
         _currentMoney += money;
-        MoneyAdded?.Invoke(money);
+        MoneyChanged?.Invoke(money);
     }
 
     public void ReduceMoney(long money)
@@ -28,6 +27,6 @@ public class Wallet : MonoBehaviour
             throw new InvalidOperationException(nameof(ReduceMoney));
 
         _currentMoney -= money;
-        MoneyReduced?.Invoke(money);
+        MoneyChanged?.Invoke(money);
     }
 }

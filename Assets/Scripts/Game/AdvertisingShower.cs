@@ -26,9 +26,8 @@ public class AdvertisingShower : MonoBehaviour
         _currentItemsSpawned++;
 
         if (_currentItemsSpawned >= _itemsForAdvertising)
-        {
             InterstitialAd.Show(ResetSpawnedItems);
-        }
+        
     }
 
     private void ResetSpawnedItems()

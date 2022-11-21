@@ -1,21 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
+using Agava.WebUtility;
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
 [RequireComponent(typeof(Button))]
 public class VolumeSwitcher : MonoBehaviour
 {
-    [SerializeField] private AudioMixer _audioMixer;
     [SerializeField] private Sprite _offVolume;
     [SerializeField] private Sprite _onVolume;
 
+    private readonly int _offVolumeValue = 0;
+    private readonly int _onVolumeValue = 1;
     private Image _image;
     private Button _button;
     private bool _isEnable;
-    private string _volume = "Volume";
 
     private void Awake()
     {
@@ -25,12 +23,24 @@ public class VolumeSwitcher : MonoBehaviour
 
     private void OnEnable()
     {
+        WebApplication.InBackgroundChangeEvent += OnBackgroundChange;
         _button.onClick.AddListener(OnButtonClick);
     }
 
     private void OnDisable()
     {
+        WebApplication.InBackgroundChangeEvent -= OnBackgroundChange;
         _button.onClick.RemoveListener(OnButtonClick);
+    }
+
+    private void OnBackgroundChange(bool inBackground)
+    {
+        AudioListener.pause = inBackground;
+
+        if (inBackground)
+            AudioListener.volume = _offVolumeValue;
+        else
+            AudioListener.volume = _isEnable ? _offVolumeValue : _onVolumeValue;
     }
 
     private void OnButtonClick()
@@ -39,12 +49,12 @@ public class VolumeSwitcher : MonoBehaviour
 
         if (_isEnable)
         {
-            _audioMixer.SetFloat(_volume, -80);
+            AudioListener.volume = _offVolumeValue;
             _image.sprite = _offVolume;
         }
         else
         {
-            _audioMixer.SetFloat(_volume, 0);
+            AudioListener.volume = _onVolumeValue;
             _image.sprite = _onVolume;
         }
     }

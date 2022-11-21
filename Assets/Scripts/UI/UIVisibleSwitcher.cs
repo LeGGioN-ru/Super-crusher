@@ -12,14 +12,14 @@ public class UIVisibleSwitcher : MonoBehaviour
     private void OnEnable()
     {
         _moverForward.Moved += OnPressMoved;
-        _gameRestarter.StartRestarting += OnStartRestarting;
+        _gameRestarter.Restarting += OnStartRestarting;
         _gameRestarter.Restarted += OnRestarted;
     }
 
     private void OnDisable()
     {
         _moverForward.Moved -= OnPressMoved;
-        _gameRestarter.StartRestarting -= OnStartRestarting;
+        _gameRestarter.Restarting -= OnStartRestarting;
         _gameRestarter.Restarted -= OnRestarted;
     }
 

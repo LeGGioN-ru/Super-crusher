@@ -18,31 +18,27 @@ public abstract class UpgradeView : MonoBehaviour
         _upgrader = GetComponent<Upgrader>();
         _button = GetComponent<Button>();
 
-        OnUpgraded(_upgrader.CurrentLevel, _upgrader.CurrentPrice);
+        OnChanged(_upgrader.Level, _upgrader.Price);
         CheckAvalible();
     }
 
     private void OnEnable()
     {
-        _upgrader.Changed += OnUpgraded;
-        _upgrader.Wallet.MoneyAdded += OnMoneyChanged;
-        _upgrader.Wallet.MoneyReduced += OnMoneyChanged;
-        _restarter.Restarted += CheckAvalible;
+        _upgrader.Changed += OnChanged;
+        _upgrader.Wallet.MoneyChanged += OnMoneyChanged;
         _button.onClick.AddListener(_upgrader.Execute);
         _button.onClick.AddListener(CheckAvalible);
     }
 
     private void OnDisable()
     {
-        _upgrader.Changed -= OnUpgraded;
-        _upgrader.Wallet.MoneyAdded -= OnMoneyChanged;
-        _upgrader.Wallet.MoneyReduced -= OnMoneyChanged;
-        _restarter.Restarted -= CheckAvalible;
+        _upgrader.Changed -= OnChanged;
+        _upgrader.Wallet.MoneyChanged -= OnMoneyChanged;
         _button.onClick.RemoveListener(_upgrader.Execute);
         _button.onClick.RemoveListener(CheckAvalible);
     }
 
-    private void OnUpgraded(int level, long price)
+    private void OnChanged(int level, long price)
     {
         _price.text = NumberCuter.Execute(price);
         _level.text = $"LV {level}";
@@ -55,17 +51,11 @@ public abstract class UpgradeView : MonoBehaviour
 
     private void CheckAvalible()
     {
-        if (IsUpgradeAvalible())
-        {
-            _button.interactable = true;
-            return;
-        }
-
-        _button.interactable = false;
+        _button.interactable = IsUpgradeAvalible();
     }
 
     protected virtual bool IsUpgradeAvalible()
     {
-        return _upgrader.Wallet.CurrentMoney >= _upgrader.CurrentPrice;
+        return _upgrader.Wallet.CurrentMoney >= _upgrader.Price;
     }
 }

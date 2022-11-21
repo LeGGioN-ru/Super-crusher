@@ -31,12 +31,6 @@ public class CameraMover : MonoBehaviour
         _restarter.Restarted -= OnRestarted;
     }
 
-    private void OnRestarted()
-    {
-        _currentCameraPositionIndex = 0;
-        Execute();
-    }
-
     private void OnPartDetected(Part part)
     {
         part.Destroyed += OnPartDestroyed;
@@ -53,11 +47,6 @@ public class CameraMover : MonoBehaviour
         part.Destroyed -= OnPartDestroyed;
     }
 
-    private void Execute()
-    {
-        transform.DOMove(_cameraPositions[_currentCameraPositionIndex].position, _moveDuration);
-    }
-
     private void OnPressMoved()
     {
         if (_currentCameraPositionIndex > 0)
@@ -65,5 +54,16 @@ public class CameraMover : MonoBehaviour
 
         _currentCameraPositionIndex++;
         Execute();
+    }
+
+    private void OnRestarted()
+    {
+        _currentCameraPositionIndex = 0;
+        Execute();
+    }
+
+    private void Execute()
+    {
+        transform.DOMove(_cameraPositions[_currentCameraPositionIndex].position, _moveDuration);
     }
 }

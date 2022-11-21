@@ -6,48 +6,53 @@ public abstract class Upgrader : MonoBehaviour
     [SerializeField] private Wallet _wallet;
     [SerializeField] private ParticleSystem _particleSystem;
     [SerializeField] private SoundSettings _soundSettings;
-    [SerializeField] protected long Price;
+    [SerializeField] private long _price;
     [SerializeField] private float _priceIncrease;
 
-    protected int Level;
+    private int _level;
 
     public event Action<int, long> Changed;
+    public event Action Executed;
 
     public Wallet Wallet => _wallet;
-    public int CurrentLevel => Level;
-    public long CurrentPrice => Price;
-    public float PriceIncrease => _priceIncrease;
+    public int Level => _level;
+    public long Price => _price;
 
     public void Execute()
     {
-        if (_wallet.CurrentMoney < Price)
+        if (_wallet.CurrentMoney < _price)
             return;
 
         _soundSettings.PlaySound();
         TryPlayParticles();
 
-        _wallet.ReduceMoney(Price);
-        UpgradeTarget();
-        Price = Convert.ToInt64(Price * _priceIncrease);
-        Level++;
-        Changed?.Invoke(Level, Price);
+        _wallet.ReduceMoney(_price);
+        StrengthenTarget();
+        _price = Convert.ToInt64(_price * _priceIncrease);
+        _level++;
+        Changed?.Invoke(_level, _price);
+        Executed?.Invoke();
     }
 
-    abstract protected void UpgradeTarget();
+    abstract protected void StrengthenTarget();
 
-    protected void CalculateStats(int startValue, int maxValue, int addValue)
+    protected void DefineCurrentStats(int startValue, int maxValue, int addValue)
     {
-        Level = CalculateLevel(startValue, maxValue, addValue);
+        _level = DefineLevel(startValue, maxValue, addValue);
+        DefinePrice(_level);
 
-        for (int i = 0; i < Level; i++)
-            Price = Convert.ToInt64(Price * PriceIncrease);
-
-        Changed?.Invoke(Level, Price);
+        Changed?.Invoke(_level, _price);
     }
 
-    private int CalculateLevel(int startValue, int maxValue, int addValue)
+    private int DefineLevel(int startValue, int maxValue, int addValue)
     {
         return (maxValue - startValue) / addValue;
+    }
+
+    private void DefinePrice(int level)
+    {
+        for (int i = 0; i < level; i++)
+            _price = Convert.ToInt64(_price * _priceIncrease);
     }
 
     private void TryPlayParticles()

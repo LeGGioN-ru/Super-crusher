@@ -13,7 +13,7 @@ public class GameRestarter : MonoBehaviour
     [SerializeField] private float _restartDelay;
 
     public event Action Restarted;
-    public event Action StartRestarting;
+    public event Action Restarting;
 
     private void OnEnable()
     {
@@ -31,13 +31,13 @@ public class GameRestarter : MonoBehaviour
         _pressMoverForward.enabled = false;
         _pressEnergy.enabled = false;
 
-        StartRestarting?.Invoke();
-
         StartCoroutine(Restrating());
     }
 
     private IEnumerator Restrating()
     {
+        Restarting?.Invoke();
+
         float passedTime = 0;
 
         while (passedTime < _restartDelay)

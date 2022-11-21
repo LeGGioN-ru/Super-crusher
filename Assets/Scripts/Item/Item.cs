@@ -9,7 +9,7 @@ public class Item : MonoBehaviour
     private PressEnergy _pressEnergy;
     private GameRestarter _restarter;
 
-    private float _destroyDelay = 10;
+    private float _destroyDelay = 6;
 
     public event Action<Item> Destroyed;
 

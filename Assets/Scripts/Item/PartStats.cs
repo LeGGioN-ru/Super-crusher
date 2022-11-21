@@ -2,12 +2,12 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class PartStats
+public class PartStats : IReadablePartStats
 {
     [SerializeField] private long _money;
     [SerializeField] private int _durability;
 
-    private int _maxDurability;
+    private readonly int _maxDurability;
 
     public int MaxDurability => _maxDurability;
     public long Money => _money;

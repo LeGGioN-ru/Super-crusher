@@ -2,17 +2,18 @@ using Agava.YandexGames;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class Leaderboard : MonoBehaviour
 {
-    [SerializeField] private LeaderboardSaver _leaderboardSaver;
     [SerializeField] private Press _press;
     [SerializeField] private LeaderboardRecord _template;
     [SerializeField] private Transform _container;
 
+    private List<LeaderboardEntryResponse> _entries = new List<LeaderboardEntryResponse>();
     private readonly List<LeaderboardRecord> _records = new List<LeaderboardRecord>();
-    private LeaderboardRecord _player;
+    private LeaderboardEntryResponse _player;
 
     private void OnEnable()
     {
@@ -24,6 +25,11 @@ public class Leaderboard : MonoBehaviour
         _press.PartDetected -= OnPartDetected;
     }
 
+    private void OnPartDetected(Part part)
+    {
+        part.Destroyed += UpdateData;
+    }
+
     public void Init(LeaderboardGetEntriesResponse leaderboardGetEntriesResponse)
     {
         foreach (LeaderboardEntryResponse entity in leaderboardGetEntriesResponse.entries)
@@ -31,32 +37,35 @@ public class Leaderboard : MonoBehaviour
             LeaderboardRecord record = Instantiate(_template, _container);
             record.UpdateData(entity);
             _records.Add(record);
+            _entries.Add(entity);
 
             if (leaderboardGetEntriesResponse.userRank == entity.rank)
-                _player = record;
+                _player = entity;
         }
-    }
-
-    private void OnPartDetected(Part part)
-    {
-        part.Destroyed += UpdateData;
     }
 
     private void UpdateData(Part part)
     {
 #if !UNITY_WEBGL || UNITY_EDITOR
-        part.Destroyed -= UpdateData;
         return;
 #endif
+        _player.score += Convert.ToInt32(part.Money);
 
-        int rankDifference = 1;
+        Agava.YandexGames.Leaderboard.SetScore(LeaderboardConstants.Name, _player.score);
 
-        Agava.YandexGames.Leaderboard.SetScore(LeaderboardConstants.Name, _player.LeaderboardData.score += Convert.ToInt32(part.Money));
-        _player.UpdateData();
+        UpdateViews();
 
-        LeaderboardRecord behindPlayer = _records.FirstOrDefault(record => record.LeaderboardData.rank == _player.LeaderboardData.rank - rankDifference);
+        part.Destroyed -= UpdateData;
+    }
 
-        if (behindPlayer != null)
-            behindPlayer.UpdateData();
+    private void UpdateViews()
+    {
+#if !UNITY_WEBGL || UNITY_EDITOR
+        return;
+#endif
+        _entries = _entries.OrderBy(entry => entry.rank).ToList();
+
+        for (int i = 0; i < _records.Count; i++)
+            _records[i].UpdateData(_entries[i]);
     }
 }

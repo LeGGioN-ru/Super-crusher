@@ -9,18 +9,11 @@ public class GameInitializator : MonoBehaviour
 {
     [SerializeField] private Leaderboard _leaderboard;
     [SerializeField] private ItemSpawner _spawner;
-    [SerializeField] private PowerUp _powerUp;
-    [SerializeField] private EnergyUp _energyUp;
-    [SerializeField] private ItemUp _itemUp;
     [SerializeField] private Wallet _wallet;
     [SerializeField] private SkinGenerator _skinGenerator;
     [SerializeField] private Press _press;
     [SerializeField] private PressEnergy _pressEnergy;
-
-    private void Awake()
-    {
-        YandexGamesSdk.CallbackLogging = true;
-    }
+    [SerializeField] private Education _education;
 
     private IEnumerator Start()
     {
@@ -36,9 +29,6 @@ public class GameInitializator : MonoBehaviour
         if (PlayerAccount.IsAuthorized == false)
             PlayerAccount.Authorize();
 
-        if (PlayerAccount.HasPersonalProfileDataPermission == false)
-            PlayerAccount.RequestPersonalProfileDataPermission();
-
         PlayerAccount.GetPlayerData(LoadSave);
 
         Agava.YandexGames.Leaderboard.GetPlayerEntry(LeaderboardConstants.Name, TryCreatePlayerLeaderboardEntity);
@@ -53,17 +43,20 @@ public class GameInitializator : MonoBehaviour
 
     private void LoadSave(string jsonSave)
     {
-        if (jsonSave == null || jsonSave == "{}")
+        string emptyJson = "{}";
+
+        if (jsonSave == emptyJson)
             return;
 
         Save save = JsonConvert.DeserializeObject<Save>(jsonSave);
 
         _press.SetPower(save.Power);
         _pressEnergy.SetEnergy(save.Energy);
-
         _wallet.SetCurrentMoney(save.Money);
-
-        _spawner.SetSave(new PartStats(save.ItemMoney, save.ItemDurability), save.AmountRepeatItems);
+        _spawner.SetSave(new PartStats(save.ItemIncome, save.ItemDurability), save.AmountRepeatsItems);
         _skinGenerator.SetAdvertisingWatched(save.SkinsAdvertisingWatched);
+
+        if (_education.IsDone)
+            _education.gameObject.SetActive(false);
     }
 }

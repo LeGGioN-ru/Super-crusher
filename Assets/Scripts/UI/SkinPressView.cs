@@ -1,10 +1,11 @@
+using Assets.Scripts.UI;
 using Lean.Localization;
 using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkinPressView : MonoBehaviour
+public class SkinPressView : MonoBehaviour, ISkinStorager
 {
     [SerializeField] private Image _image;
     [SerializeField] private Button _button;
@@ -17,7 +18,7 @@ public class SkinPressView : MonoBehaviour
 
     private SkinPress _skinPress;
 
-    public SkinPress SkinPress => _skinPress;
+    public IAdvertisingWatcher AdvertisingWatcher => _skinPress;
 
     public void Init(SkinPress skinPress)
     {
@@ -47,8 +48,8 @@ public class SkinPressView : MonoBehaviour
         }
         else
         {
-            _progress.value = _skinPress.AdvertisingWatched / Convert.ToSingle(_skinPress.NeedWatchAdvertising);
-            _textProgress.text = $"{_skinPress.AdvertisingWatched}/{_skinPress.NeedWatchAdvertising}";
+            _progress.value = _skinPress.AmountWatched / Convert.ToSingle(_skinPress.NeedWatchAdvertising);
+            _textProgress.text = $"{_skinPress.AmountWatched}/{_skinPress.NeedWatchAdvertising}";
             _textTranslate.TranslationName = _showAdvertisingButtonLabel;
         }
     }

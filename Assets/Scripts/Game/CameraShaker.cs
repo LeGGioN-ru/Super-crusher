@@ -5,7 +5,7 @@ public class CameraShaker : MonoBehaviour
 {
     [SerializeField] private ShakePreset _presetBroken;
     [SerializeField] private ShakePreset _presetHit;
-    [SerializeField] private Shaker _shakerBroken;
+    [SerializeField] private Shaker _shaker;
     [SerializeField] private Press _press;
     [SerializeField] private GameRestarter _gameRestarter;
 
@@ -13,19 +13,19 @@ public class CameraShaker : MonoBehaviour
 
     private void OnEnable()
     {
-        _gameRestarter.StartRestarting += OnStartRestarting;
+        _gameRestarter.Restarting += OnStartRestarting;
         _press.PartDetected += OnPartDetected;
     }
 
     private void OnDisable()
     {
-        _gameRestarter.StartRestarting -= OnStartRestarting;
+        _gameRestarter.Restarting -= OnStartRestarting;
         _press.PartDetected -= OnPartDetected;
     }
 
     private void OnPartDetected(Part part)
     {
-        _shakeInstance = _shakerBroken.Shake(_presetBroken);
+        _shakeInstance = _shaker.Shake(_presetBroken);
         part.Destroyed += OnDestroyed;
     }
 

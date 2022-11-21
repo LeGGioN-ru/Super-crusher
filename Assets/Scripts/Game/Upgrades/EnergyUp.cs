@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class EnergyUp : Upgrader
@@ -18,10 +17,10 @@ public class EnergyUp : Upgrader
 
     private void OnEnergySetted()
     {
-        CalculateStats(_pressEnergy.StartEnergy, _pressEnergy.Energy, _addEnergy);
+        DefineCurrentStats(_pressEnergy.StartEnergy, _pressEnergy.Energy, _addEnergy);
     }
 
-    protected override void UpgradeTarget()
+    protected override void StrengthenTarget()
     {
         _pressEnergy.UpgradeEnergy(_addEnergy);
     }

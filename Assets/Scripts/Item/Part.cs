@@ -22,7 +22,6 @@ public class Part : MonoBehaviour
     public float TakeDamage(int damage)
     {
         _stats.ReduceDurability(damage);
-        
 
         if (IsHittable == false)
         {
@@ -41,6 +40,9 @@ public class Part : MonoBehaviour
     private void DemolishRigid()
     {
         if (TryGetComponent(out RayfireRigid rigid))
+        {
             rigid.Demolish();
+            _constituentParts.ForEach(part => part.Push());
+        }
     }
 }

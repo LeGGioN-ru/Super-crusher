@@ -4,12 +4,9 @@ using UnityEngine;
 public class ItemUp : Upgrader
 {
     [SerializeField] private ItemSpawner _spawner;
-    [SerializeField] private int _durabilityUp;
-    [SerializeField] private float _moneyIncrease;
     [SerializeField] private GameRestarter _gameRestarter;
-
-    public int DurabilityUp => _durabilityUp;
-    public float MoneyIncrease => _moneyIncrease;
+    [SerializeField] private int _addDurability;
+    [SerializeField] private float _addMoneyIncrease;
 
     private void OnEnable()
     {
@@ -23,11 +20,11 @@ public class ItemUp : Upgrader
 
     private void OnPartStatsSetted()
     {
-        CalculateStats(_spawner.StartDurability, _spawner.PartStats.MaxDurability, _durabilityUp);
+        DefineCurrentStats(_spawner.StartDurability, _spawner.PartStats.MaxDurability, _addDurability);
     }
 
-    protected override void UpgradeTarget()
+    protected override void StrengthenTarget()
     {
-        _spawner.UpgradeParts(_durabilityUp, _moneyIncrease);
+        _spawner.UpgradeParts(_addDurability, _addMoneyIncrease);
     }
 }

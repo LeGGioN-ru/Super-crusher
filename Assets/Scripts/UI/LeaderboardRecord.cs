@@ -14,28 +14,16 @@ public class LeaderboardRecord : MonoBehaviour
     [SerializeField] private Sprite _thirdPlacePanel;
     [SerializeField] private Sprite _defaultPlacePanel;
 
-    private LeaderboardEntryResponse _leaderboardData;
-
-    public LeaderboardEntryResponse LeaderboardData => _leaderboardData;
-
     public void UpdateData(LeaderboardEntryResponse leaderboardEntryResponse)
     {
-        _leaderboardData = leaderboardEntryResponse;
-
         SetData(leaderboardEntryResponse);
-        SetBackground();
+
+        SetBackground(leaderboardEntryResponse);
     }
 
-    public void UpdateData()
+    private Sprite DefineBackground(LeaderboardEntryResponse leaderboardEntryResponse)
     {
-        SetData(_leaderboardData);
-
-        SetBackground();
-    }
-
-    private Sprite DefineBackground()
-    {
-        return LeaderboardData.rank switch
+        return leaderboardEntryResponse.rank switch
         {
             1 => _firstPlacePanel,
             2 => _secondPlacePanel,
@@ -48,12 +36,16 @@ public class LeaderboardRecord : MonoBehaviour
     {
         _place.text = leaderboardEntryResponse.rank.ToString();
         _score.text = NumberCuter.Execute(leaderboardEntryResponse.score);
-        _name.text = leaderboardEntryResponse.player.publicName;
+        
+        if (leaderboardEntryResponse.player.publicName == string.Empty || leaderboardEntryResponse.player.publicName == null)
+            _name.text = "Anonym";
+        else
+            _name.text = leaderboardEntryResponse.player.publicName;
     }
 
-    private void SetBackground()
+    private void SetBackground(LeaderboardEntryResponse leaderboardEntryResponse)
     {
-        Sprite background = DefineBackground();
+        Sprite background = DefineBackground(leaderboardEntryResponse);
 
         foreach (Image panel in _backgroundPanels)
             panel.sprite = background;

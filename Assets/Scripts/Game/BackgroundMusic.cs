@@ -19,23 +19,23 @@ public class BackgroundMusic : MonoBehaviour
 
     private void OnEnable()
     {
-        _gameRestarter.StartRestarting += OnGameStartRestarting;
+        _gameRestarter.Restarting += OnGameStartRestarting;
         _pressMoverForward.Moved += OnMoved;
     }
 
     private void OnDisable()
     {
-        _gameRestarter.StartRestarting -= OnGameStartRestarting;
+        _gameRestarter.Restarting -= OnGameStartRestarting;
         _pressMoverForward.Moved -= OnMoved;
-    }
-
-    private void OnMoved()
-    {
-        _sound.DOFade(_minVolume, _durationVolumeChange);
     }
 
     private void OnGameStartRestarting()
     {
         _sound.DOFade(_maxVolume, _durationVolumeChange);
+    }
+
+    private void OnMoved()
+    {
+        _sound.DOFade(_minVolume, _durationVolumeChange);
     }
 }

@@ -5,22 +5,23 @@ public class Save
 {
     public int Power;
     public int Energy;
-    public long ItemMoney;
+    public long ItemIncome;
     public int ItemDurability;
-    public int CurrentItemIndex;
-    public int AmountRepeatItems;
+    public int AmountRepeatsItems;
     public long Money;
     public int[] SkinsAdvertisingWatched;
+    public bool IsEducatuionDone;
 
-    public Save(int durability, long itemMoney, int power, int energy, long money, int[] skinsAdvertisingWatched, int amountRepeats)
+    public Save(int durability, long itemMoney, int power, int energy, long money, int[] skinsAdvertisingWatched, int amountRepeats, bool isEducatuionDone)
     {
         Power = power;
         Energy = energy;
-        ItemMoney = itemMoney;
+        ItemIncome = itemMoney;
         ItemDurability = durability;
-        AmountRepeatItems = amountRepeats;
+        AmountRepeatsItems = amountRepeats;
         Money = money;
         SkinsAdvertisingWatched = skinsAdvertisingWatched;
+        IsEducatuionDone = isEducatuionDone;
     }
 }
 

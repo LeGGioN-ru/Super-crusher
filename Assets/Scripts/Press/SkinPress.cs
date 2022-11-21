@@ -1,10 +1,10 @@
 using Agava.YandexGames;
+using Assets.Scripts.UI;
 using System;
 using UnityEngine;
 
-
 [Serializable]
-public class SkinPress
+public class SkinPress : IAdvertisingWatcher
 {
     [SerializeField] private Sprite _previewImage;
     [SerializeField] private Mesh _model;
@@ -13,32 +13,30 @@ public class SkinPress
     private MeshFilter _pressModel;
     private int _advertisingWatched;
 
-    public event Action<int> Loaded;
-
     public Sprite PreviewImage => _previewImage;
-    public int AdvertisingWatched => _advertisingWatched;
+    public int AmountWatched => _advertisingWatched;
     public int NeedWatchAdvertising => _needWatchAdvertising;
-    public bool IsAvalible => NeedWatchAdvertising <= AdvertisingWatched;
+    public bool IsAvalible => NeedWatchAdvertising <= AmountWatched;
 
     public void Init(MeshFilter pressModel)
     {
         _pressModel = pressModel;
     }
 
-    public void SetAdvertisingWatched(int advertisingWatched)
+    public void SetAmountWatched(int advertisingWatched)
     {
         _advertisingWatched = advertisingWatched;
     }
 
     public void ShowAdvertising()
     {
-#if !UNITY_WEBGL || UNITY_EDITOR
         _advertisingWatched++;
+
+#if !UNITY_WEBGL || UNITY_EDITOR
         return;
 #endif
 
         VideoAd.Show();
-        _advertisingWatched++;
     }
 
     public void SetModel()

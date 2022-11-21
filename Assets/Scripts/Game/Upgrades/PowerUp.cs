@@ -17,10 +17,10 @@ public class PowerUp : Upgrader
 
     private void OnPowerSetted()
     {
-        CalculateStats(_press.StartPower, _press.CurrentPower, _addPower);
+        DefineCurrentStats(_press.StartPower, _press.CurrentPower, _addPower);
     }
 
-    protected override void UpgradeTarget()
+    protected override void StrengthenTarget()
     {
         _press.UpgradePower(_addPower);
     }

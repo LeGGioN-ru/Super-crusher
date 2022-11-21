@@ -1,3 +1,4 @@
+using Assets.Scripts.UI;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,9 +9,9 @@ public class SkinGenerator : MonoBehaviour
     [SerializeField] private Transform _container;
     [SerializeField] private MeshFilter _pressModel;
 
-    private List<SkinPressView> _pressViews = new List<SkinPressView>();
+    private readonly List<SkinPressView> _pressViews = new List<SkinPressView>();
 
-    public IReadOnlyList<SkinPressView> PressViews => _pressViews;
+    public IReadOnlyList<ISkinStorager> PressViews => _pressViews;
 
     private void Start()
     {
@@ -27,7 +28,7 @@ public class SkinGenerator : MonoBehaviour
     {
         for (int i = 0; i < advertisingWatched.Length; i++)
         {
-            _pressViews[i].SkinPress.SetAdvertisingWatched(advertisingWatched[i]);
+            _pressViews[i].AdvertisingWatcher.SetAmountWatched(advertisingWatched[i]);
             _pressViews[i].UpdateUI();
         }
     }

@@ -19,12 +19,12 @@ public class MoneyAddTextPool : MonoBehaviour
 
     private void OnEnable()
     {
-        _wallet.MoneyAdded += OnMoneyAdded;
+        _wallet.MoneyChanged += OnMoneyAdded;
     }
 
     private void OnDisable()
     {
-        _wallet.MoneyAdded -= OnMoneyAdded;
+        _wallet.MoneyChanged -= OnMoneyAdded;
     }
 
     private void CreatePull()
