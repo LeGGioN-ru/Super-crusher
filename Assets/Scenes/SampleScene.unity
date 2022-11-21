@@ -2464,7 +2464,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 64.85
+  m_fontSize: 64.75
   m_fontSizeBase: 45.6
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3073,7 +3073,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9980e2855481b874c9b9c40b6ff57b84, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f85891019d4562c42b2369508b37ba01, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7939,8 +7939,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 182229896}
   m_HandleRect: {fileID: 182229895}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -9452,7 +9452,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1088900033}
   m_HandleRect: {fileID: 1088900032}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -14531,7 +14531,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1290245210}
   m_HandleRect: {fileID: 1290245209}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
