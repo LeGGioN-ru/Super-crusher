@@ -11,6 +11,7 @@ public class Press : MonoBehaviour
     private Part _currentPart;
     private float _passedTime;
     private int _currentPower;
+    private int _additionalPower;
 
     public int StartPower => _startPower;
     public int CurrentPower => _currentPower;
@@ -74,9 +75,22 @@ public class Press : MonoBehaviour
         _currentPower += powerUp;
     }
 
+    public void SetAdditionalPower(int additionalPower)
+    {
+        if (additionalPower <= 0)
+            throw new ArgumentException(nameof(additionalPower));
+
+        _additionalPower = additionalPower;
+    }
+
+    public void ResetAdditionalPower()
+    {
+        _additionalPower = 0;
+    }
+
     private void HitPart()
     {
-        float percentItemDamage = _currentPart.TakeDamage(_currentPower);
+        float percentItemDamage = _currentPart.TakeDamage(_currentPower + _additionalPower);
         _wallet.AddMoney(Convert.ToInt32(_currentPart.Money * percentItemDamage));
         PartHitted?.Invoke();
     }

@@ -26,6 +26,7 @@ public class GameSaver : MonoBehaviour
     {
 #if !UNITY_WEBGL || UNITY_EDITOR
         return;
+
 #endif
         Save save = new Save(_spawner.PartStats.Durability, _spawner.PartStats.Money, _press.CurrentPower, _pressEnergy.Energy, _wallet.CurrentMoney, GetSkinsAdvertisingWatched(), _spawner.AmountRepeats, _education.IsDone);
 

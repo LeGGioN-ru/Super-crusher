@@ -17,6 +17,7 @@ public abstract class Upgrader : MonoBehaviour
     public Wallet Wallet => _wallet;
     public int Level => _level;
     public long Price => _price;
+    public float PriceIncrease => _priceIncrease;
 
     public void Execute()
     {
