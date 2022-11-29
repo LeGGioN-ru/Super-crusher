@@ -1,5 +1,4 @@
 using Agava.YandexGames;
-using IJunior.TypedScenes;
 using Lean.Localization;
 using Newtonsoft.Json;
 using System.Collections;

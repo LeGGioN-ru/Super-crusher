@@ -866,7 +866,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ENERGY UP
+  m_text: "ENERJ\u0130Y\u0130 \u0130Y\u0130LE\u015ET\u0130R\u0130N"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f89e86c523dd66047ae49605f9265d73, type: 2}
   m_sharedMaterial: {fileID: -4468484875723766799, guid: f89e86c523dd66047ae49605f9265d73, type: 2}
@@ -893,7 +893,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50.1
+  m_fontSize: 27.6
   m_fontSizeBase: 43.09
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1235,7 +1235,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ITEM UP
+  m_text: "\xD6\u011EES\u0130 \u0130Y\u0130LE\u015ET\u0130R"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f89e86c523dd66047ae49605f9265d73, type: 2}
   m_sharedMaterial: {fileID: -4468484875723766799, guid: f89e86c523dd66047ae49605f9265d73, type: 2}
@@ -1262,7 +1262,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 57.75
+  m_fontSize: 32.75
   m_fontSizeBase: 47.5
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1471,7 +1471,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1662599120}
   m_Direction: 0
   m_Value: 1
-  m_Size: 0.9999999
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3397,7 +3397,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Get
+  m_text: almak
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f89e86c523dd66047ae49605f9265d73, type: 2}
   m_sharedMaterial: {fileID: -4468484875723766799, guid: f89e86c523dd66047ae49605f9265d73, type: 2}
@@ -3424,7 +3424,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 77.35
+  m_fontSize: 48.2
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4313,10 +4313,10 @@ MonoBehaviour:
     _needWatchAdvertising: 0
   - _previewImage: {fileID: 21300000, guid: 089b6365eabf8df43bbddc88744a8c96, type: 3}
     _model: {fileID: -2124705421725058983, guid: 5487bdf093e8e924ab13808751727744, type: 3}
-    _needWatchAdvertising: 2
+    _needWatchAdvertising: 0
   - _previewImage: {fileID: 21300000, guid: a70c81cc66096b74292243342a905bbe, type: 3}
     _model: {fileID: -2124705421725058983, guid: f56e6247c2d58c1459569d8bd3bac978, type: 3}
-    _needWatchAdvertising: 3
+    _needWatchAdvertising: 0
   _template: {fileID: 3507531668074461972, guid: 39800caccd95ba74eafb955431c75591, type: 3}
   _container: {fileID: 176452939}
   _pressModel: {fileID: 1367651119}
@@ -4946,7 +4946,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: POWER UP
+  m_text: "G\xDCC\xDC GEL\u0130\u015ET\u0130R"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f89e86c523dd66047ae49605f9265d73, type: 2}
   m_sharedMaterial: {fileID: -4468484875723766799, guid: f89e86c523dd66047ae49605f9265d73, type: 2}
@@ -4973,7 +4973,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 53
+  m_fontSize: 35.95
   m_fontSizeBase: 47.5
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5453,7 +5453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806f0696300aeac44a0e17efee222854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLanguage: en
+  currentLanguage: tr
   detectLanguage: 0
   defaultLanguage: en
   saveLoad: 0
@@ -5822,9 +5822,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: IT SEEMS YOU DO NOT HAVE ENOUGH STRENGTH TO BREAK THIS OBJECT, LET I HELP
-    YOU. WATCH THE VIDEO AND YOU WILL GET MONEY FOR SEVERAL POWER-UPS AT ONCE!!!
-    HAHAHAHAHAHAHA!!!
+  m_text: "BU C\u0130HAZI KIRMAK \u0130\xC7\u0130N YETERL\u0130 G\xDCC\xDCN\xDCZ
+    YOK G\xD6R\xDCN\xDCYOR, S\u0130ZLERE YARDIMCI OLALIM. V\u0130DEOYU \u0130ZLEY\u0130N
+    VE AYNI ANDA B\u0130RKA\xC7 G\xDC\xC7 UP \u0130\xC7\u0130N PARA KAZANACAKSINIZ!!!
+    HAHAHAHAHAHAHA!!!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f89e86c523dd66047ae49605f9265d73, type: 2}
   m_sharedMaterial: {fileID: -4468484875723766799, guid: f89e86c523dd66047ae49605f9265d73, type: 2}
@@ -5851,7 +5852,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.7
+  m_fontSize: 38.05
   m_fontSizeBase: 39.63
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6312,7 +6313,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Shop
+  m_text: Puan
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f89e86c523dd66047ae49605f9265d73, type: 2}
   m_sharedMaterial: {fileID: -4468484875723766799, guid: f89e86c523dd66047ae49605f9265d73, type: 2}
@@ -7093,7 +7094,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Leaderboard
+  m_text: "Liderler S\u0131ralamas\u0131"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f89e86c523dd66047ae49605f9265d73, type: 2}
   m_sharedMaterial: {fileID: -4468484875723766799, guid: f89e86c523dd66047ae49605f9265d73, type: 2}
@@ -9583,7 +9584,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Exit
+  m_text: "Git d\u0131\u015Far\u0131"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f89e86c523dd66047ae49605f9265d73, type: 2}
   m_sharedMaterial: {fileID: -4468484875723766799, guid: f89e86c523dd66047ae49605f9265d73, type: 2}
@@ -9757,7 +9758,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 182229896}
   m_HandleRect: {fileID: 182229895}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -10011,7 +10012,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hold to play
+  m_text: "Oynamak i\xE7in bas\u0131l\u0131 tutun"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f89e86c523dd66047ae49605f9265d73, type: 2}
   m_sharedMaterial: {fileID: -4468484875723766799, guid: f89e86c523dd66047ae49605f9265d73, type: 2}
@@ -10170,8 +10171,8 @@ MonoBehaviour:
   _itemUp: {fileID: 1847037774}
   _items:
   - {fileID: 6596591679282332266, guid: 05fb95fd57d5b204d8e44f885b009c9f, type: 3}
-  - {fileID: 4150009544778500329, guid: 3a79616b471568249b3238d4fc274837, type: 3}
   - {fileID: 2937201576580427990, guid: f6f254b0271bce64e8290085a707ef30, type: 3}
+  - {fileID: 4150009544778500329, guid: 3a79616b471568249b3238d4fc274837, type: 3}
   - {fileID: 137255155468803203, guid: 8e9bb062b8ef614488e08dc85e12f2aa, type: 3}
   - {fileID: 9199078804047958311, guid: 15817cea417bc5a46a8b993b48c33e65, type: 3}
   - {fileID: 3761871870603060199, guid: 564107229f3c40b40a077a381d92b375, type: 3}
@@ -11276,7 +11277,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1088900033}
   m_HandleRect: {fileID: 1088900032}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -16806,7 +16807,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0040283203, y: -9.138123}
+  m_AnchoredPosition: {x: 0.0040283203, y: -9.138062}
   m_SizeDelta: {x: 100, y: 99}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2024642338
