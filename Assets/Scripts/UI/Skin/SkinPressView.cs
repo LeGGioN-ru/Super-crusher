@@ -24,6 +24,7 @@ public class SkinPressView : MonoBehaviour, ISkinStorager
     {
         _image.sprite = skinPress.PreviewImage;
         _skinPress = skinPress;
+        _skinPress.AdvertisingWatched += UpdateUI;
 
         UpdateUI();
     }
@@ -31,10 +32,12 @@ public class SkinPressView : MonoBehaviour, ISkinStorager
     private void OnEnable()
     {
         _button.onClick.AddListener(OnButtonClick);
+
     }
 
     private void OnDisable()
     {
+        _skinPress.AdvertisingWatched -= UpdateUI;
         _button.onClick.RemoveListener(OnButtonClick);
     }
 

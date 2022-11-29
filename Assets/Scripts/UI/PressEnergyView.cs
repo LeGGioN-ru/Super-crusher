@@ -11,15 +11,17 @@ public class PressEnergyView : MonoBehaviour
 
     private void OnEnable()
     {
-        _pressEnergy.Changed += OnChanged;
+        _pressEnergy.Changed += Display;
+        _pressEnergy.EnergySetted += Display;
     }
 
     private void OnDisable()
     {
-        _pressEnergy.Changed -= OnChanged;
+        _pressEnergy.Changed -= Display;
+        _pressEnergy.EnergySetted -= Display;
     }
 
-    private void OnChanged(float currentEnergy)
+    private void Display(float currentEnergy)
     {
         currentEnergy = Convert.ToInt32(Math.Clamp(currentEnergy, 0, float.MaxValue));
 

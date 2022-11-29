@@ -2,7 +2,6 @@ using Agava.YandexGames;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 using UnityEngine;
 
 public class Leaderboard : MonoBehaviour
@@ -10,6 +9,7 @@ public class Leaderboard : MonoBehaviour
     [SerializeField] private Press _press;
     [SerializeField] private LeaderboardRecord _template;
     [SerializeField] private Transform _container;
+    [SerializeField] private int _amountRecords;
 
     private List<LeaderboardEntryResponse> _entries = new List<LeaderboardEntryResponse>();
     private readonly List<LeaderboardRecord> _records = new List<LeaderboardRecord>();
@@ -32,9 +32,13 @@ public class Leaderboard : MonoBehaviour
 
     public void Init(LeaderboardGetEntriesResponse leaderboardGetEntriesResponse)
     {
-        foreach (LeaderboardEntryResponse entity in leaderboardGetEntriesResponse.entries)
+        for (int i = 0; i < _amountRecords; i++)
         {
+            if (leaderboardGetEntriesResponse.entries.Length <= i)
+                break;
+
             LeaderboardRecord record = Instantiate(_template, _container);
+            LeaderboardEntryResponse entity = leaderboardGetEntriesResponse.entries[i];
             record.UpdateData(entity);
             _records.Add(record);
             _entries.Add(entity);
@@ -63,9 +67,9 @@ public class Leaderboard : MonoBehaviour
 #if !UNITY_WEBGL || UNITY_EDITOR
         return;
 #endif
-        _entries = _entries.OrderBy(entry => entry.rank).ToList();
+        _entries = _entries.OrderByDescending(entry => entry.score).ToList();
 
         for (int i = 0; i < _records.Count; i++)
-            _records[i].UpdateData(_entries[i]);
+            _records[i].UpdateData(_entries[i], i + 1);
     }
 }

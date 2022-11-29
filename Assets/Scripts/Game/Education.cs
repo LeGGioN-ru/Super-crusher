@@ -38,6 +38,11 @@ public class Education : MonoBehaviour
         _press.PartDetected -= OnPartDetected;
     }
 
+    public void CountEducation()
+    {
+        _isDone = true;
+    }
+
     private void OnSpawned(Item item)
     {
         item.Destroyed += OnDestroyed;

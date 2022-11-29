@@ -8,11 +8,18 @@ public class HelpMoney : MonoBehaviour
     [SerializeField] private int _amountUpgrades;
     [SerializeField] private Wallet _wallet;
 
+    private VideoAdvertisingShower _videoAdvertisingShower;
+
     public int HelpMoneyAdd => Convert.ToInt32(_powerUp.Price * _powerUp.PriceIncrease * _amountUpgrades);
+
+    private void Start()
+    {
+        _videoAdvertisingShower = new VideoAdvertisingShower();
+    }
 
     public void ShowAd()
     {
-        VideoAd.Show(null, Execute);
+        _videoAdvertisingShower.Execute(Execute);
     }
 
     private void Execute()

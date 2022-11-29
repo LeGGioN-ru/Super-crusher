@@ -252,6 +252,7 @@ GameObject:
   - component: {fileID: 2612573813908173924}
   - component: {fileID: 2612573813908173930}
   - component: {fileID: 2612573813908173931}
+  - component: {fileID: 3496568095243165825}
   m_Layer: 5
   m_Name: Name
   m_TagString: Untagged
@@ -276,8 +277,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -62, y: 1.5478}
-  m_SizeDelta: {x: 402.408, y: 78.2685}
+  m_AnchoredPosition: {x: -60.58722, y: 1.5478}
+  m_SizeDelta: {x: 357.1998, y: 78.2685}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2612573813908173930
 CanvasRenderer:
@@ -307,7 +308,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0418\u043C\u044F \u0438\u0433\u0440\u043E\u043A\u0430"
+  m_text: Anonymous
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f89e86c523dd66047ae49605f9265d73, type: 2}
   m_sharedMaterial: {fileID: -4468484875723766799, guid: f89e86c523dd66047ae49605f9265d73, type: 2}
@@ -376,6 +377,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3496568095243165825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2612573813908173925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: Anonym
+  FallbackText: Anonymous
 --- !u!1 &2612573814216814056
 GameObject:
   m_ObjectHideFlags: 0

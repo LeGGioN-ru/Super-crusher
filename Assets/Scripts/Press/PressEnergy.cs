@@ -18,7 +18,7 @@ public class PressEnergy : MonoBehaviour
 
     public event Action<float> Changed;
     public event Action EnergyEnded;
-    public event Action EnergySetted;
+    public event Action<float> EnergySetted;
 
     private void Awake()
     {
@@ -49,7 +49,8 @@ public class PressEnergy : MonoBehaviour
             throw new ArgumentException(nameof(Energy));
 
         _energy = energy;
-        EnergySetted?.Invoke();
+        ResetEnergy();
+        EnergySetted?.Invoke(_energy);
     }
 
     public void UpgradeEnergy(int powerUp)

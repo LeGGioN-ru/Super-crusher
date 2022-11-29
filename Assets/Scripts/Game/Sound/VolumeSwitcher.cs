@@ -9,8 +9,9 @@ public class VolumeSwitcher : MonoBehaviour
     [SerializeField] private Sprite _offVolume;
     [SerializeField] private Sprite _onVolume;
 
-    private readonly int _offVolumeValue = 0;
-    private readonly int _onVolumeValue = 1;
+    public const int OffVolumeValue = 0;
+    public const int OnVolumeValue = 1;
+
     private Image _image;
     private Button _button;
     private bool _isEnable;
@@ -35,12 +36,10 @@ public class VolumeSwitcher : MonoBehaviour
 
     private void OnBackgroundChange(bool inBackground)
     {
-        AudioListener.pause = inBackground;
-
         if (inBackground)
-            AudioListener.volume = _offVolumeValue;
+            AudioListener.volume = OffVolumeValue;
         else
-            AudioListener.volume = _isEnable ? _offVolumeValue : _onVolumeValue;
+            AudioListener.volume =_isEnable ? OffVolumeValue : OnVolumeValue;
     }
 
     private void OnButtonClick()
@@ -49,12 +48,12 @@ public class VolumeSwitcher : MonoBehaviour
 
         if (_isEnable)
         {
-            AudioListener.volume = _offVolumeValue;
+            AudioListener.volume = OffVolumeValue;
             _image.sprite = _offVolume;
         }
         else
         {
-            AudioListener.volume = _onVolumeValue;
+            AudioListener.volume = OnVolumeValue;
             _image.sprite = _onVolume;
         }
     }

@@ -1,4 +1,5 @@
 using Agava.YandexGames;
+using Lean.Localization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,9 +15,11 @@ public class LeaderboardRecord : MonoBehaviour
     [SerializeField] private Sprite _thirdPlacePanel;
     [SerializeField] private Sprite _defaultPlacePanel;
 
-    public void UpdateData(LeaderboardEntryResponse leaderboardEntryResponse)
+    private string _anonym = "Anonym";
+
+    public void UpdateData(LeaderboardEntryResponse leaderboardEntryResponse, int place=0)
     {
-        SetData(leaderboardEntryResponse);
+        SetData(leaderboardEntryResponse, place);
 
         SetBackground(leaderboardEntryResponse);
     }
@@ -32,15 +35,15 @@ public class LeaderboardRecord : MonoBehaviour
         };
     }
 
-    private void SetData(LeaderboardEntryResponse leaderboardEntryResponse)
+    private void SetData(LeaderboardEntryResponse leaderboardEntryResponse, int place)
     {
-        _place.text = leaderboardEntryResponse.rank.ToString();
+        _place.text = place == 0 ? leaderboardEntryResponse.rank.ToString() : place.ToString();
         _score.text = NumberCuter.Execute(leaderboardEntryResponse.score);
-        
+
         if (leaderboardEntryResponse.player.publicName == string.Empty || leaderboardEntryResponse.player.publicName == null)
-            _name.text = "Anonym";
-        else
-            _name.text = leaderboardEntryResponse.player.publicName;
+            return;
+
+        _name.text = leaderboardEntryResponse.player.publicName;
     }
 
     private void SetBackground(LeaderboardEntryResponse leaderboardEntryResponse)

@@ -1,9 +1,10 @@
 using Agava.YandexGames;
+using IJunior.TypedScenes;
 using Lean.Localization;
 using Newtonsoft.Json;
-using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameInitializator : MonoBehaviour
 {
@@ -14,10 +15,10 @@ public class GameInitializator : MonoBehaviour
     [SerializeField] private Press _press;
     [SerializeField] private PressEnergy _pressEnergy;
     [SerializeField] private Education _education;
+    [SerializeField] private Image _loadScreen;
 
     private IEnumerator Start()
     {
-
 #if !UNITY_WEBGL || UNITY_EDITOR
         yield break;
 #endif
@@ -38,7 +39,7 @@ public class GameInitializator : MonoBehaviour
     private void TryCreatePlayerLeaderboardEntity(LeaderboardEntryResponse leaderboardEntryResponse)
     {
         if (leaderboardEntryResponse == null)
-            Agava.YandexGames.Leaderboard.SetScore(LeaderboardConstants.Name, Convert.ToInt32(0));
+            Agava.YandexGames.Leaderboard.SetScore(LeaderboardConstants.Name, 0);
     }
 
     private void LoadSave(string jsonSave)
@@ -57,6 +58,11 @@ public class GameInitializator : MonoBehaviour
         _skinGenerator.SetAdvertisingWatched(save.SkinsAdvertisingWatched);
 
         if (save.IsEducatuionDone)
+        {
+            _education.CountEducation();
             _education.gameObject.SetActive(false);
+        }
+
+        _loadScreen.gameObject.SetActive(false);
     }
 }

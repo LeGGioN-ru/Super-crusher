@@ -15,7 +15,7 @@ public class EnergyUp : Upgrader
         _pressEnergy.EnergySetted -= OnEnergySetted;
     }
 
-    private void OnEnergySetted()
+    private void OnEnergySetted(float energy)
     {
         DefineCurrentStats(_pressEnergy.StartEnergy, _pressEnergy.Energy, _addEnergy);
     }

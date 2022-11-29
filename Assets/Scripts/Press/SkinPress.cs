@@ -12,6 +12,9 @@ public class SkinPress : IAdvertisingWatcher
 
     private MeshFilter _pressModel;
     private int _advertisingWatched;
+    private VideoAdvertisingShower _videoAdvertisingShower;
+
+    public event Action AdvertisingWatched;
 
     public Sprite PreviewImage => _previewImage;
     public int AmountWatched => _advertisingWatched;
@@ -20,6 +23,7 @@ public class SkinPress : IAdvertisingWatcher
 
     public void Init(MeshFilter pressModel)
     {
+        _videoAdvertisingShower = new VideoAdvertisingShower();
         _pressModel = pressModel;
     }
 
@@ -30,13 +34,16 @@ public class SkinPress : IAdvertisingWatcher
 
     public void ShowAdvertising()
     {
-        _advertisingWatched++;
-
 #if !UNITY_WEBGL || UNITY_EDITOR
         return;
 #endif
+        _videoAdvertisingShower.Execute(IncrementAdvertisingWathced);
+    }
 
-        VideoAd.Show();
+    private void IncrementAdvertisingWathced()
+    {
+        _advertisingWatched++;
+        AdvertisingWatched?.Invoke();
     }
 
     public void SetModel()
