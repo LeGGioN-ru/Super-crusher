@@ -2,6 +2,7 @@ using Agava.YandexGames;
 using Lean.Localization;
 using Newtonsoft.Json;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,10 +16,12 @@ public class GameInitializator : MonoBehaviour
     [SerializeField] private PressEnergy _pressEnergy;
     [SerializeField] private Education _education;
     [SerializeField] private Image _loadScreen;
+    [SerializeField] private Button _authorization;
 
     private IEnumerator Start()
     {
 #if !UNITY_WEBGL || UNITY_EDITOR
+        _loadScreen.gameObject.SetActive(false);
         yield break;
 #endif
 
@@ -26,9 +29,21 @@ public class GameInitializator : MonoBehaviour
 
         LeanLocalization.SetCurrentLanguageAll(YandexGamesSdk.Environment.i18n.lang);
 
-        if (PlayerAccount.IsAuthorized == false)
-            PlayerAccount.Authorize();
+        if (PlayerAccount.IsAuthorized)
+        {
+            _authorization.gameObject.SetActive(false);
+        }
+        else
+        {
+            _loadScreen.gameObject.SetActive(false);
+            yield break;
+        }
 
+        LoadCloudData();
+    }
+
+    public void LoadCloudData()
+    {
         PlayerAccount.GetPlayerData(LoadSave);
 
         Agava.YandexGames.Leaderboard.GetPlayerEntry(LeaderboardConstants.Name, TryCreatePlayerLeaderboardEntity);

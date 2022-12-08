@@ -1,5 +1,4 @@
 using Agava.YandexGames;
-using Lean.Localization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,18 +14,19 @@ public class LeaderboardRecord : MonoBehaviour
     [SerializeField] private Sprite _thirdPlacePanel;
     [SerializeField] private Sprite _defaultPlacePanel;
 
-    private string _anonym = "Anonym";
-
-    public void UpdateData(LeaderboardEntryResponse leaderboardEntryResponse, int place=0)
+    public void UpdateData(LeaderboardEntryResponse leaderboardEntryResponse, int place = 0)
     {
+        if (place == 0)
+            place = leaderboardEntryResponse.rank;
+
         SetData(leaderboardEntryResponse, place);
 
-        SetBackground(leaderboardEntryResponse);
+        SetBackground(place);
     }
 
-    private Sprite DefineBackground(LeaderboardEntryResponse leaderboardEntryResponse)
+    private Sprite DefineBackground(int place)
     {
-        return leaderboardEntryResponse.rank switch
+        return place switch
         {
             1 => _firstPlacePanel,
             2 => _secondPlacePanel,
@@ -37,7 +37,7 @@ public class LeaderboardRecord : MonoBehaviour
 
     private void SetData(LeaderboardEntryResponse leaderboardEntryResponse, int place)
     {
-        _place.text = place == 0 ? leaderboardEntryResponse.rank.ToString() : place.ToString();
+        _place.text = place.ToString();
         _score.text = NumberCuter.Execute(leaderboardEntryResponse.score);
 
         if (leaderboardEntryResponse.player.publicName == string.Empty || leaderboardEntryResponse.player.publicName == null)
@@ -46,9 +46,9 @@ public class LeaderboardRecord : MonoBehaviour
         _name.text = leaderboardEntryResponse.player.publicName;
     }
 
-    private void SetBackground(LeaderboardEntryResponse leaderboardEntryResponse)
+    private void SetBackground(int place)
     {
-        Sprite background = DefineBackground(leaderboardEntryResponse);
+        Sprite background = DefineBackground(place);
 
         foreach (Image panel in _backgroundPanels)
             panel.sprite = background;
