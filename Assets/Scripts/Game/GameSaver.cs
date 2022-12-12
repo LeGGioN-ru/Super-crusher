@@ -11,26 +11,33 @@ public class GameSaver : MonoBehaviour
     [SerializeField] private Wallet _wallet;
     [SerializeField] private SkinGenerator _skinGenerator;
     [SerializeField] private Education _education;
+    [SerializeField] private Upgrader[] _upgrades;
 
     private void OnEnable()
     {
         _restarted.Restarted += Execute;
+
+        foreach (var upgrade in _upgrades)
+            upgrade.Executed += Execute;
     }
 
     private void OnDisable()
     {
         _restarted.Restarted -= Execute;
+
+        foreach (var upgrade in _upgrades)
+            upgrade.Executed -= Execute;
     }
 
-    private void Execute()
+    public void Execute()
     {
 #if !UNITY_WEBGL || UNITY_EDITOR
         return;
-
 #endif
         Save save = new Save(_spawner.PartStats.Durability, _spawner.PartStats.Money, _press.CurrentPower, _pressEnergy.Energy, _wallet.CurrentMoney, GetSkinsAdvertisingWatched(), _spawner.AmountRepeats, _education.IsDone);
 
-        PlayerAccount.SetPlayerData(JsonConvert.SerializeObject(save));
+        PlayerPrefs.SetString(nameof(Save), JsonConvert.SerializeObject(save));
+        PlayerPrefs.Save();
     }
 
     private int[] GetSkinsAdvertisingWatched()

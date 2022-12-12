@@ -1828,26 +1828,19 @@ MonoBehaviour:
   data: 0
   entries:
   - Language: ru
-    Text: "\u041C\u041E\u041B\u041E\u0414\u0415\u0426!!! \u0411\u042B\u0421\u0422\u0420\u041E
-      \u0423\u0427\u0418\u0428\u042C\u0421\u042F, \u041D\u0415 \u0417\u0410\u0411\u0423\u0414\u042C,
-      \u0410\u0412\u0422\u041E\u0420\u0418\u0417\u041E\u0412\u0410\u0422\u042C\u0421\u042F,
-      \u0427\u0422\u041E\u0411\u042B \u0421\u041E\u0425\u0420\u0410\u041D\u0418\u0422\u042C,
-      \u0421\u0412\u041E\u0419 \u041F\u0420\u041E\u0413\u0420\u0415\u0421\u0421 (\u043A\u043D\u043E\u043F\u043A\u0430
-      \u0441 \u0432\u043E\u0441\u043A\u043B\u0438\u0446\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u043C
-      \u0437\u043D\u0430\u043A\u043E\u043C \u0438 \u0447\u0435\u043B\u043E\u0432\u0435\u0447\u043A\u043E\u043C
-      \u0441\u043B\u0435\u0432\u0430)!!! \u041F\u0420\u041E\u0414\u041E\u041B\u0416\u0410\u0419
-      \u0412 \u0422\u041E\u041C \u0416\u0415 \u0414\u0423\u0425\u0415!!! \u0423\u0425\u0410\u0425\u0410\u0425\u0410\u0425!!!\n"
+    Text: "\u0411\u042B\u0421\u0422\u0420\u041E \u0423\u0427\u0418\u0428\u042C\u0421\u042F!!!
+      \u041C\u041E\u041B\u041E\u0414\u0415\u0426!!! \u041F\u0420\u041E\u0414\u041E\u041B\u0416\u0410\u0419
+      \u0412 \u0422\u041E\u041C \u0416\u0415 \u0414\u0423\u0425\u0415 \u0418 \u0421\u0414\u0415\u041B\u0410\u0419
+      \u0421\u0412\u041E\u0419 \u041F\u0420\u0415\u0421\u0421 \u0421\u0410\u041C\u042B\u041C
+      \u0421\u0418\u041B\u042C\u041D\u042B\u041C!!! \u0423\u0425\u0410\u0425\u0410\u0425\u0410\u0425!!!"
     Object: {fileID: 0}
   - Language: en
-    Text: WELL DONE!!! LEARN FAST, DON'T FORGET TO LOG IN TO SAVE YOUR PROGRESS (button
-      with an exclamation point and a little man on the left)!!! CONTINUE IN THE
-      SAME SPIRIT!!! HAHAHAHA!!!
+    Text: YOU LEARN FAST!!! WELL DONE!!! CONTINUE IN THE SAME SPIRIT AND MAKE YOUR
+      PRESS THE STRONGEST!!! HAHAHAHA!!!
     Object: {fileID: 0}
   - Language: tr
-    Text: "AFER\u0130N!!! HIZLI \xD6\u011EREN\u0130N, \u0130LERLEMEN\u0130Z\u0130
-      KAYDETMEK \u0130\xC7\u0130N G\u0130R\u0130\u015E YAPMAYI UNUTMAYIN (solda \xFCnlem
-      i\u015Faretli ve k\xFC\xE7\xFCk adam bulunan d\xFC\u011Fme)!!! AYNI RUHLA DEVAM
-      !!! HAHAHAHA!!!"
+    Text: "HIZLI \xD6\u011EREN\u0130YORSUN!!! AFER\u0130N!!! AYNI RUHLA DEVAM ED\u0130N
+      VE BASINIZI EN G\xDC\xC7L\xDC YAPIN!!! HAHAHAHA!!!"
     Object: {fileID: 0}
 --- !u!1 &464657348
 GameObject:
@@ -2076,6 +2069,10 @@ MonoBehaviour:
   _wallet: {fileID: 1894765471}
   _skinGenerator: {fileID: 949232774}
   _education: {fileID: 1061924579}
+  _upgrades:
+  - {fileID: 1146952614}
+  - {fileID: 1847037774}
+  - {fileID: 1421422849}
 --- !u!114 &477368538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4487,6 +4484,7 @@ MonoBehaviour:
   _template: {fileID: 3507531668074461972, guid: 39800caccd95ba74eafb955431c75591, type: 3}
   _container: {fileID: 176452939}
   _pressModel: {fileID: 1367651119}
+  _saver: {fileID: 477368537}
 --- !u!95 &949232775
 Animator:
   serializedVersion: 4

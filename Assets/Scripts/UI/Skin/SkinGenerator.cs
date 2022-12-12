@@ -8,12 +8,13 @@ public class SkinGenerator : MonoBehaviour
     [SerializeField] private SkinPressView _template;
     [SerializeField] private Transform _container;
     [SerializeField] private MeshFilter _pressModel;
+    [SerializeField] private GameSaver _saver;
 
     private readonly List<SkinPressView> _pressViews = new List<SkinPressView>();
 
     public IReadOnlyList<ISkinStorager> PressViews => _pressViews;
 
-    private void Start()
+    private void Awake()
     {
         foreach (SkinPress skin in _skins)
         {
@@ -22,6 +23,19 @@ public class SkinGenerator : MonoBehaviour
             skinPressView.Init(skin);
             _pressViews.Add(skinPressView);
         }
+    }
+
+    private void OnEnable()
+    {
+        foreach (var pressView in _pressViews)
+            pressView.SkinPress.AdvertisingWatched += _saver.Execute;
+
+    }
+
+    private void OnDisable()
+    {
+        foreach (var pressView in _pressViews)
+            pressView.SkinPress.AdvertisingWatched -= _saver.Execute;
     }
 
     public void SetAdvertisingWatched(int[] advertisingWatched)

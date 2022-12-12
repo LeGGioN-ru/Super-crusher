@@ -1,4 +1,3 @@
-using Agava.YandexGames;
 using Assets.Scripts.UI;
 using System;
 using UnityEngine;

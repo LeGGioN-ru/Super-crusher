@@ -16,6 +16,8 @@ public class SkinPressView : MonoBehaviour, ISkinStorager
     [SerializeField] private string _showAdvertisingButtonLabel;
     [SerializeField] private LeanLocalizedTextMeshProUGUI _textTranslate;
 
+    public SkinPress SkinPress => _skinPress;
+
     private SkinPress _skinPress;
 
     public IAdvertisingWatcher AdvertisingWatcher => _skinPress;
@@ -24,15 +26,10 @@ public class SkinPressView : MonoBehaviour, ISkinStorager
     {
         _image.sprite = skinPress.PreviewImage;
         _skinPress = skinPress;
-        _skinPress.AdvertisingWatched += UpdateUI;
-
         UpdateUI();
-    }
 
-    private void OnEnable()
-    {
+        _skinPress.AdvertisingWatched += UpdateUI;
         _button.onClick.AddListener(OnButtonClick);
-
     }
 
     private void OnDisable()

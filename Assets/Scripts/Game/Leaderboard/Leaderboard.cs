@@ -11,6 +11,8 @@ public class Leaderboard : MonoBehaviour
     [SerializeField] private Transform _container;
     [SerializeField] private int _amountRecords;
 
+    public int AmountRecords => _amountRecords;
+
     private List<LeaderboardEntryResponse> _entries = new List<LeaderboardEntryResponse>();
     private readonly List<LeaderboardRecord> _records = new List<LeaderboardRecord>();
     private LeaderboardEntryResponse _player;

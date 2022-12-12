@@ -30,24 +30,16 @@ public class GameInitializator : MonoBehaviour
         LeanLocalization.SetCurrentLanguageAll(YandexGamesSdk.Environment.i18n.lang);
 
         if (PlayerAccount.IsAuthorized)
-        {
             _authorization.gameObject.SetActive(false);
-        }
-        else
-        {
-            _loadScreen.gameObject.SetActive(false);
-            yield break;
-        }
 
         LoadCloudData();
+        LoadSave(PlayerPrefs.GetString(nameof(Save)));
     }
 
     public void LoadCloudData()
     {
-        PlayerAccount.GetPlayerData(LoadSave);
-
         Agava.YandexGames.Leaderboard.GetPlayerEntry(LeaderboardConstants.Name, TryCreatePlayerLeaderboardEntity);
-        Agava.YandexGames.Leaderboard.GetEntries(LeaderboardConstants.Name, _leaderboard.Init);
+        Agava.YandexGames.Leaderboard.GetEntries(LeaderboardConstants.Name, _leaderboard.Init, topPlayersCount: _leaderboard.AmountRecords, competingPlayersCount: _leaderboard.AmountRecords);
     }
 
     private void TryCreatePlayerLeaderboardEntity(LeaderboardEntryResponse leaderboardEntryResponse)
@@ -58,10 +50,11 @@ public class GameInitializator : MonoBehaviour
 
     private void LoadSave(string jsonSave)
     {
-        string emptyJson = "{}";
-
-        if (jsonSave == emptyJson)
+        if (string.IsNullOrEmpty(jsonSave))
+        {
+            DisableLoadScreen();
             return;
+        }
 
         Save save = JsonConvert.DeserializeObject<Save>(jsonSave);
 
@@ -77,6 +70,11 @@ public class GameInitializator : MonoBehaviour
             _education.gameObject.SetActive(false);
         }
 
+        DisableLoadScreen();
+    }
+
+    private void DisableLoadScreen()
+    {
         _loadScreen.gameObject.SetActive(false);
     }
 }
